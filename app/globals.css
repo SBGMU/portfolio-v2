@@ -1,0 +1,264 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 93%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 93%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 93%;
+    --primary: 215 98% 51%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 11%;
+    --secondary-foreground: 0 0% 80%;
+    --muted: 0 0% 11%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 215 98% 51%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 13%;
+    --input: 0 0% 13%;
+    --ring: 215 98% 51%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.75rem;
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 0 0% 93%;
+    --sidebar-primary: 215 98% 51%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 11%;
+    --sidebar-accent-foreground: 0 0% 93%;
+    --sidebar-border: 0 0% 13%;
+    --sidebar-ring: 215 98% 51%;
+  }
+
+  .light-mode {
+    --background: 220 20% 97%;
+    --foreground: 220 20% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 10%;
+    --primary: 215 98% 51%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 92%;
+    --secondary-foreground: 220 20% 20%;
+    --muted: 220 14% 92%;
+    --muted-foreground: 220 10% 40%;
+    --accent: 215 98% 51%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 14% 88%;
+    --input: 220 14% 88%;
+    --ring: 215 98% 51%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+
+/* Base: assure une pile correcte */
+html, body { min-height: 100%; }
+body { position: relative; }
+
+
+ /* =========================
+   LIGHT (premium + très smooth)
+   ========================= */
+.light-mode body {
+  background: none;
+}
+
+.light-mode body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+
+  /* Multi-couches = plus "premium" qu'un seul linear-gradient */
+  background-image:
+    radial-gradient(1200px circle at 12% 10%, rgba(255,255,255,0.85), transparent 60%),
+    radial-gradient(900px circle at 88% 18%, rgba(120,199,251,0.35), transparent 58%),
+    radial-gradient(900px circle at 50% 110%, rgba(169,222,253,0.55), transparent 62%),
+    linear-gradient(
+      135deg,
+      #f9fafb 0%,
+      #eef6fb 25%,
+      #dbefff 50%,
+      #a9defd 75%,
+      #78c7fb 100%
+    );
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Le vrai lissage */
+  filter: blur(48px) saturate(1.08);
+  transform: translateZ(0);
+}
+
+.light-mode body::after {
+  /* Micro-noise pour casser le banding (très subtil) */
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+}
+
+/* =========================
+   DARK (premium + très smooth)
+   ========================= */
+.dark-mode body {
+  background: none;
+}
+
+.dark-mode body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+
+  /* Noir profond + légère énergie (glow) */
+  background-image:
+    radial-gradient(1000px circle at 20% 10%, rgba(120,199,251,0.10), transparent 60%),
+    radial-gradient(900px circle at 85% 25%, rgba(99,102,241,0.08), transparent 62%),
+    radial-gradient(900px circle at 50% 115%, rgba(0,0,0,0.65), transparent 65%),
+    linear-gradient(
+      135deg,
+      #1d1d1d 0%,
+      #171717 25%,
+      #121212 50%,
+      #0a0a0a 75%,
+      #000000 100%
+    );
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  filter: blur(52px) saturate(1.10);
+  transform: translateZ(0);
+}
+
+.dark-mode body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+}
+
+
+
+
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(0 0% 0%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(0 0% 18%);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(215 98% 51%);
+}
+
+.light-mode ::-webkit-scrollbar-track {
+  background: hsl(220 20% 97%);
+}
+
+.light-mode ::-webkit-scrollbar-thumb {
+  background: hsl(220 14% 78%);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll reveal animations - faster & more dynamic */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes reveal-left {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.reveal-up {
+  opacity: 0;
+  animation: reveal-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.reveal-scale {
+  opacity: 0;
+  animation: reveal-scale 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.reveal-left {
+  opacity: 0;
+  animation: reveal-left 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
