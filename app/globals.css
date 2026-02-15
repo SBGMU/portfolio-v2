@@ -43,6 +43,11 @@
     --sidebar-accent-foreground: 0 0% 93%;
     --sidebar-border: 0 0% 13%;
     --sidebar-ring: 215 98% 51%;
+
+    /* Skill card overlay (dark mode) */
+    --skill-overlay-bg: rgba(0, 0, 0, 0.65);
+    --skill-overlay-text: rgba(255, 255, 255, 0.95);
+    --skill-overlay-shadow: 0 0 8px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.15);
   }
 
   .light-mode {
@@ -65,6 +70,11 @@
     --border: 220 14% 88%;
     --input: 220 14% 88%;
     --ring: 215 98% 51%;
+
+    /* Skill card overlay (light mode) */
+    --skill-overlay-bg: rgba(255, 255, 255, 0.6);
+    --skill-overlay-text: rgba(0, 0, 0, 0.9);
+    --skill-overlay-shadow: 0 0 8px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 0, 0, 0.08);
   }
 
   * {

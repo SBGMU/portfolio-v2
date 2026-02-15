@@ -1,8 +1,10 @@
 "use client"
 
 import Image from "next/image"
-import { Phone, ArrowUpRight } from "lucide-react"
+import { Phone, ArrowUpRight, X } from "lucide-react"
+import { useState, useEffect } from "react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
+import { useMediaQuery } from "@/hooks/use-mobile"
 
 const expertTools: {
   name: string
@@ -91,6 +93,19 @@ const expertTools: {
 export function HeroSection() {
   const { ref: heroRef, isVisible: heroVisible } = useScrollReveal(0.1)
   const { ref: skillsRef, isVisible: skillsVisible } = useScrollReveal(0.1)
+  const [expandedSkill, setExpandedSkill] = useState<string | null>(null)
+  const isMobile = useMediaQuery("(max-width: 1023px)")
+
+  useEffect(() => {
+    if (expandedSkill !== null) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [expandedSkill])
 
   return (
     <section id="presentation" className="pt-28 pb-24 px-6">
@@ -146,31 +161,144 @@ export function HeroSection() {
             </h2>
             <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 flex-1">
               {expertTools.map((tool) => (
-                <div
+                <SkillCard
                   key={tool.name}
-                  className="flex flex-col items-center justify-center gap-2.5 bg-secondary/50 rounded-xl p-4 hover:bg-secondary transition-colors cursor-default"
-                  title={tool.name}
-                >
-                  <div className="shrink-0 h-9 w-9 relative flex items-center justify-center">
-                    {tool.image ? (
-                      <img
-                        src={tool.image}
-                        alt={tool.name}
-                        className="h-9 w-9 object-contain"
-                      />
-                    ) : (
-                      tool.icon
-                    )}
-                  </div>
-                  <span className="text-[11px] leading-tight text-muted-foreground font-medium text-center">
-                    {tool.shortName}
-                  </span>
-                </div>
+                  tool={tool}
+                  isMobile={isMobile}
+                  onExpand={() => setExpandedSkill(tool.name)}
+                />
               ))}
             </div>
           </div>
         </div>
       </div>
+
+      {/* Skill modal for mobile/tablet */}
+      {expandedSkill !== null && isMobile && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm p-4 sm:p-6"
+          onClick={() => setExpandedSkill(null)}
+        >
+          <div
+            className="bg-card rounded-2xl border border-border p-8 max-w-sm w-full relative shadow-[0_16px_50px_rgba(0,0,0,0.5),0_4px_16px_rgba(5,107,255,0.15)]"
+            style={{ animation: "reveal-scale 0.25s cubic-bezier(0.22,1,0.36,1) forwards" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setExpandedSkill(null)}
+              className="absolute top-4 right-4 h-8 w-8 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Close"
+            >
+              <X className="h-4 w-4" />
+            </button>
+
+            {(() => {
+              const tool = expertTools.find((t) => t.name === expandedSkill)
+              if (!tool) return null
+              return (
+                <div className="flex flex-col items-center text-center">
+                  <div className="h-20 w-20 rounded-xl bg-secondary flex items-center justify-center mb-6 p-2">
+                    {tool.image ? (
+                      <img
+                        src={tool.image}
+                        alt={tool.name}
+                        className="h-16 w-16 object-contain"
+                      />
+                    ) : (
+                      <div className="h-12 w-12">{tool.icon}</div>
+                    )}
+                  </div>
+                  <h3 className="font-heading text-xl font-bold text-foreground mb-3">
+                    {tool.shortName}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {tool.name}
+                  </p>
+                </div>
+              )
+            })()}
+          </div>
+        </div>
+      )}
     </section>
+  )
+}
+
+function SkillCard({
+  tool,
+  isMobile,
+  onExpand,
+}: {
+  tool: (typeof expertTools)[0]
+  isMobile: boolean
+  onExpand: () => void
+}) {
+  const [isHovered, setIsHovered] = useState(false)
+
+  return (
+    <div
+      className="relative flex flex-col items-center justify-center rounded-xl bg-secondary p-3 transition-all duration-300 cursor-pointer group overflow-hidden"
+      onClick={() => {
+        if (isMobile) onExpand()
+      }}
+      onMouseEnter={() => {
+        if (!isMobile) setIsHovered(true)
+      }}
+      onMouseLeave={() => {
+        if (!isMobile) setIsHovered(false)
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={tool.name}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault()
+          if (isMobile) onExpand()
+          else setIsHovered(!isHovered)
+        }
+      }}
+    >
+      {/* Icon / Image */}
+      <div className="h-10 w-10 flex items-center justify-center mb-1.5 transition-all duration-300">
+        {tool.image ? (
+          <img
+            src={tool.image}
+            alt={tool.name}
+            className="h-10 w-10 object-contain"
+          />
+        ) : (
+          <div className="h-8 w-8">{tool.icon}</div>
+        )}
+      </div>
+      <span className="text-[11px] font-medium text-muted-foreground text-center leading-tight transition-all duration-300">
+        {tool.shortName}
+      </span>
+
+      {/* Desktop hover overlay - glassmorphism with blurred text */}
+      {!isMobile && (
+        <div
+          className={`absolute inset-0 rounded-xl flex items-center justify-center p-2 transition-all duration-300 ${
+            isHovered
+              ? "opacity-100 scale-100"
+              : "opacity-0 scale-95 pointer-events-none"
+          }`}
+          style={{
+            background: "var(--skill-overlay-bg)",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+          }}
+        >
+          <span
+            className="text-[11px] sm:text-xs font-semibold text-center leading-tight px-1"
+            style={{
+              color: "var(--skill-overlay-text)",
+              textShadow: "var(--skill-overlay-shadow)",
+            }}
+          >
+            {tool.name}
+          </span>
+        </div>
+      )}
+    </div>
   )
 }
