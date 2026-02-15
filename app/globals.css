@@ -10,7 +10,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 0%;
+    --background: 230 30% 3%;
     --foreground: 0 0% 93%;
     --card: 0 0% 6%;
     --card-foreground: 0 0% 93%;
@@ -75,109 +75,92 @@
     @apply bg-background text-foreground;
   }
 
-
-/* Base: assure une pile correcte */
-html, body { min-height: 100%; }
-body { position: relative; }
-
-
- /* =========================
-   LIGHT (premium + très smooth)
-   ========================= */
-.light-mode body {
-  background: none;
+  .light-mode body {
+    background-color: transparent !important;
+  }
 }
 
-.light-mode body::before {
-  content: "";
+/* Dark mode ambient background effect - inspired by GrowthPilot style */
+body {
+  position: relative;
+}
+
+body::before {
+  content: '';
   position: fixed;
-  inset: -20%;
+  inset: 0;
   z-index: -1;
+  background:
+    /* Top-center blue glow */
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(5, 107, 255, 0.12) 0%, transparent 70%),
+    /* Subtle left ray */
+    linear-gradient(168deg, rgba(5, 107, 255, 0.04) 0%, transparent 40%),
+    /* Subtle right ray */
+    linear-gradient(192deg, rgba(5, 107, 255, 0.04) 0%, transparent 40%),
+    /* Central vertical soft light */
+    linear-gradient(180deg, rgba(15, 20, 40, 0.6) 0%, rgba(0, 0, 0, 0.95) 50%, rgba(0, 0, 0, 1) 100%),
+    /* Base color */
+    #050510;
   pointer-events: none;
+}
 
-  /* Multi-couches = plus "premium" qu'un seul linear-gradient */
+/* Alternating vertical stripes overlay (football pitch style) */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
   background-image:
-    radial-gradient(1200px circle at 12% 10%, rgba(255,255,255,0.85), transparent 60%),
-    radial-gradient(900px circle at 88% 18%, rgba(120,199,251,0.35), transparent 58%),
-    radial-gradient(900px circle at 50% 110%, rgba(169,222,253,0.55), transparent 62%),
-    linear-gradient(
-      135deg,
-      #f9fafb 0%,
-      #eef6fb 25%,
-      #dbefff 50%,
-      #a9defd 75%,
-      #78c7fb 100%
-    );
+    /* Alternating vertical stripes - light blue / slightly lighter */
+    repeating-linear-gradient(90deg,
+      rgba(5, 107, 255, 0.04) 0px,
+      rgba(5, 107, 255, 0.04) 160px,
+      rgba(5, 107, 255, 0.015) 160px,
+      rgba(5, 107, 255, 0.015) 320px),
+    /* Thin horizontal lines */
+    repeating-linear-gradient(0deg,
+      rgba(5, 107, 255, 0.03) 0px,
+      rgba(5, 107, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 160px);
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, transparent 65%);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, transparent 65%);
+  pointer-events: none;
+}
 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  /* Le vrai lissage */
-  filter: blur(48px) saturate(1.08);
-  transform: translateZ(0);
+/* Light mode ambient background effect */
+.light-mode body::before {
+  background:
+    /* Top-center blue glow - more visible */
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(5, 107, 255, 0.18) 0%, transparent 65%),
+    /* Wider mid-page blue wash */
+    radial-gradient(ellipse 90% 60% at 50% 30%, rgba(5, 107, 255, 0.06) 0%, transparent 70%),
+    /* Soft left blue ray */
+    linear-gradient(165deg, rgba(180, 210, 255, 0.5) 0%, transparent 40%),
+    /* Soft right blue ray */
+    linear-gradient(195deg, rgba(180, 210, 255, 0.4) 0%, transparent 40%),
+    /* Central vertical gradient with blue tint */
+    linear-gradient(180deg, rgba(220, 232, 255, 0.9) 0%, rgba(235, 242, 255, 0.95) 40%, rgba(245, 248, 255, 1) 100%),
+    /* Base color - slightly bluer */
+    #eef3ff;
 }
 
 .light-mode body::after {
-  /* Micro-noise pour casser le banding (très subtil) */
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.06;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-}
-
-/* =========================
-   DARK (premium + très smooth)
-   ========================= */
-.dark-mode body {
-  background: none;
-}
-
-.dark-mode body::before {
-  content: "";
-  position: fixed;
-  inset: -20%;
-  z-index: -1;
-  pointer-events: none;
-
-  /* Noir profond + légère énergie (glow) */
   background-image:
-    radial-gradient(1000px circle at 20% 10%, rgba(120,199,251,0.10), transparent 60%),
-    radial-gradient(900px circle at 85% 25%, rgba(99,102,241,0.08), transparent 62%),
-    radial-gradient(900px circle at 50% 115%, rgba(0,0,0,0.65), transparent 65%),
-    linear-gradient(
-      135deg,
-      #1d1d1d 0%,
-      #171717 25%,
-      #121212 50%,
-      #0a0a0a 75%,
-      #000000 100%
-    );
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  filter: blur(52px) saturate(1.10);
-  transform: translateZ(0);
-}
-
-.dark-mode body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.07;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-}
-
-
-
-
+    /* Alternating vertical stripes - light blue pitch style */
+    repeating-linear-gradient(90deg,
+      rgba(5, 107, 255, 0.07) 0px,
+      rgba(5, 107, 255, 0.07) 160px,
+      rgba(5, 107, 255, 0) 160px,
+      rgba(5, 107, 255, 0) 320px),
+    /* Thin horizontal lines */
+    repeating-linear-gradient(0deg,
+      rgba(5, 107, 255, 0.04) 0px,
+      rgba(5, 107, 255, 0.04) 1px,
+      transparent 1px,
+      transparent 160px);
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, transparent 60%);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, transparent 60%);
 }
 
 /* Custom scrollbar */
@@ -186,7 +169,7 @@ body { position: relative; }
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(0 0% 0%);
+  background: hsl(230 30% 3%);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -199,11 +182,11 @@ body { position: relative; }
 }
 
 .light-mode ::-webkit-scrollbar-track {
-  background: hsl(220 20% 97%);
+  background: #f5f7fc;
 }
 
 .light-mode ::-webkit-scrollbar-thumb {
-  background: hsl(220 14% 78%);
+  background: hsl(220 14% 82%);
 }
 
 /* Smooth scroll */
