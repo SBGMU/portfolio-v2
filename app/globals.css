@@ -200,115 +200,157 @@ body::after {
 }
 
 /* ================================================================== */
-/*  Liquid Glass — shared classes for navbar, buttons, mobile menu     */
+/*  Liquid Glass v2 — shinier with specular highlights & inner glow    */
+/*  Reference: Apple-level luminosity, bright edge refraction          */
 /* ================================================================== */
 
-/* Desktop nav pill — frosted glass container */
+/* Desktop nav pill — frosted glass container (shinier) */
 .liquid-glass-nav {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(24px) saturate(1.6);
-  -webkit-backdrop-filter: blur(24px) saturate(1.6);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(28px) saturate(1.9) brightness(1.1);
+  -webkit-backdrop-filter: blur(28px) saturate(1.9) brightness(1.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+    0 4px 30px rgba(0, 0, 0, 0.30),
+    0 0 1px rgba(255, 255, 255, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
 }
 
-/* Active nav item — deeper glass pill */
+/* Hovered nav item — luminous glass pill driven by :hover / JS state */
+.liquid-glass-nav-hover {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(20px) saturate(2.0) brightness(1.15);
+  -webkit-backdrop-filter: blur(20px) saturate(2.0) brightness(1.15);
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  box-shadow:
+    0 0 24px rgba(255, 255, 255, 0.10),
+    0 2px 16px rgba(0, 0, 0, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+  color: #fff !important;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Active (scroll-tracked) — subtle text highlight + dot indicator */
 .liquid-glass-nav-active {
-  background: rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow:
-    0 2px 12px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  color: #fff !important;
 }
 
-/* Generic liquid glass button (hamburger, close, theme, lang) */
+/* Generic liquid glass button — shinier with specular edge */
 .liquid-glass-btn {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px) saturate(1.5);
-  -webkit-backdrop-filter: blur(20px) saturate(1.5);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(24px) saturate(1.9) brightness(1.1);
+  -webkit-backdrop-filter: blur(24px) saturate(1.9) brightness(1.1);
+  border: 1px solid rgba(255, 255, 255, 0.20);
   box-shadow:
-    0 2px 16px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 2px 20px rgba(0, 0, 0, 0.22),
+    0 0 1px rgba(255, 255, 255, 0.30),
+    inset 0 1px 0 rgba(255, 255, 255, 0.20),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .liquid-glass-btn:hover {
-  background: rgba(255, 255, 255, 0.16);
-  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.20);
+  border-color: rgba(255, 255, 255, 0.30);
+  box-shadow:
+    0 4px 28px rgba(0, 0, 0, 0.25),
+    0 0 2px rgba(255, 255, 255, 0.40),
+    inset 0 1px 0 rgba(255, 255, 255, 0.30),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06);
 }
 
 /* Mobile overlay — full-screen frosted glass backdrop */
 .liquid-glass-overlay {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(32px) saturate(1.4);
-  -webkit-backdrop-filter: blur(32px) saturate(1.4);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(36px) saturate(1.6) brightness(0.95);
+  -webkit-backdrop-filter: blur(36px) saturate(1.6) brightness(0.95);
 }
 
-/* Mobile slide-down menu panel — liquid glass */
+/* Mobile slide-down menu panel — shinier liquid glass */
 .liquid-glass-menu {
-  background: rgba(20, 20, 30, 0.65);
-  backdrop-filter: blur(40px) saturate(1.8);
-  -webkit-backdrop-filter: blur(40px) saturate(1.8);
+  background: rgba(20, 20, 30, 0.55);
+  backdrop-filter: blur(48px) saturate(2.0) brightness(1.05);
+  -webkit-backdrop-filter: blur(48px) saturate(2.0) brightness(1.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow:
-    0 8px 40px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 8px 48px rgba(0, 0, 0, 0.45),
+    0 0 1px rgba(255, 255, 255, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
 }
 
-/* ---- Light-mode overrides for liquid glass ---- */
+/* ---- Light-mode overrides for liquid glass (high-gloss) ---- */
 .light-mode .liquid-glass-nav {
-  background: rgba(0, 0, 0, 0.06);
-  border-color: rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.60);
   box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 4px 28px rgba(0, 0, 0, 0.06),
+    0 0 1px rgba(255, 255, 255, 0.80),
+    inset 0 1px 0 rgba(255, 255, 255, 0.70),
     inset 0 -1px 0 rgba(0, 0, 0, 0.03);
 }
 
 .light-mode .liquid-glass-nav a {
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.55);
 }
 
 .light-mode .liquid-glass-nav a:hover {
   color: rgba(0, 0, 0, 0.9);
 }
 
-.light-mode .liquid-glass-nav-active {
-  background: rgba(0, 0, 0, 0.1);
-  border-color: rgba(0, 0, 0, 0.1);
+/* Light-mode hovered pill — bright white glass */
+.light-mode .liquid-glass-nav-hover {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(255, 255, 255, 0.75);
   color: rgba(0, 0, 0, 0.95) !important;
   box-shadow:
-    0 2px 12px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    0 0 20px rgba(255, 255, 255, 0.30),
+    0 2px 16px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.80),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.02);
+}
+
+.light-mode .liquid-glass-nav-active {
+  color: rgba(0, 0, 0, 0.95) !important;
 }
 
 .light-mode .liquid-glass-btn {
-  background: rgba(0, 0, 0, 0.06);
-  border-color: rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.55);
   color: rgba(0, 0, 0, 0.8);
   box-shadow:
-    0 2px 16px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    0 2px 20px rgba(0, 0, 0, 0.05),
+    0 0 1px rgba(255, 255, 255, 0.70),
+    inset 0 1px 0 rgba(255, 255, 255, 0.60),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.02);
 }
 
 .light-mode .liquid-glass-btn:hover {
-  background: rgba(0, 0, 0, 0.1);
-  border-color: rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.60);
+  border-color: rgba(255, 255, 255, 0.70);
+  box-shadow:
+    0 4px 28px rgba(0, 0, 0, 0.07),
+    0 0 2px rgba(255, 255, 255, 0.90),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.02);
 }
 
 .light-mode .liquid-glass-overlay {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(36px) saturate(1.6) brightness(1.10);
+  -webkit-backdrop-filter: blur(36px) saturate(1.6) brightness(1.10);
 }
 
 .light-mode .liquid-glass-menu {
-  background: rgba(240, 244, 255, 0.7);
+  background: rgba(240, 246, 255, 0.65);
+  border-color: rgba(255, 255, 255, 0.50);
   box-shadow:
-    0 8px 40px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    0 8px 48px rgba(0, 0, 0, 0.08),
+    0 0 1px rgba(255, 255, 255, 0.80),
+    inset 0 1px 0 rgba(255, 255, 255, 0.70),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.02);
 }
 
 /* In light-mode mobile menu, use dark text */
