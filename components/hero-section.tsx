@@ -9,20 +9,34 @@ import { useMediaQuery } from "@/hooks/use-mobile"
 import { useLanguage } from "@/context/language-context"
 
 const expertTools: {
-  name: string
+  name: string | React.ReactNode
   shortName: string
   image?: string
   icon?: React.ReactNode
 }[] = [
     {
-      name: "Python: Pandas, Numpy, ETL",
+      name: (
+        <>
+          Pandas
+          <br />
+          NumPy
+          <br />
+          Data cleaning
+        </>
+      ),
       shortName: "Python",
       image: "/images/skills/python.png",
     },
     {
-      name: "MySQL",
-      shortName: "MySQL",
-      image: "/images/skills/mysql.png",
+      name: (
+        <>
+          MySQL
+          <br />
+          SQL Lite
+        </>
+      ),
+      shortName: "SQL",
+      image: "/images/skills/sql.png",
     },
     {
       name: "PostgreSQL",
@@ -30,21 +44,33 @@ const expertTools: {
       image: "/images/skills/postgresql.png",
     },
     {
-      name: "Data Modeling",
-      shortName: "Data Modeling",
-      icon: (
-        <svg viewBox="0 0 24 24" className="h-full w-full" fill="none" stroke="#E535AB" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="4" r="2" fill="#E535AB" />
-          <circle cx="5" cy="12" r="2" fill="#E535AB" />
-          <circle cx="19" cy="12" r="2" fill="#E535AB" />
-          <circle cx="12" cy="20" r="2" fill="#E535AB" />
-          <line x1="12" y1="6" x2="5" y2="10" />
-          <line x1="12" y1="6" x2="19" y2="10" />
-          <line x1="5" y1="14" x2="12" y2="18" />
-          <line x1="19" y1="14" x2="12" y2="18" />
-          <line x1="5" y1="12" x2="19" y2="12" />
-        </svg>
+      name: (
+        <>
+          Data modelling
+          <br />
+          Dashboarding
+          <br />
+          Statistical analyses
+        </>
       ),
+      shortName: "Data Analytics",
+      image: "/images/skills/database.png",
+    },
+    {
+      name: (
+        <>
+          Power BI (DAX, Power Query)
+          <br />
+          Tableau
+        </>
+      ),
+      shortName: "BI & Data Visualization",
+      image: "/images/skills/BI.png",
+    },
+    {
+      name: "R",
+      shortName: "Language R",
+      image: "/images/skills/R_icon.svg",
     },
     {
       name: "Visual Basic",
@@ -67,11 +93,6 @@ const expertTools: {
       image: "/images/skills/php.png",
     },
     {
-      name: "Power BI",
-      shortName: "Power BI",
-      image: "/images/skills/powerbi.png",
-    },
-    {
       name: "Git",
       shortName: "Git",
       icon: (
@@ -81,14 +102,15 @@ const expertTools: {
       ),
     },
     {
-      name: "Metrica Sports",
-      shortName: "Metrica",
-      image: "/images/skills/metrica.avif",
-    },
-    {
-      name: "Opta Pro Hub",
-      shortName: "Opta Pro",
-      image: "/images/skills/opta.webp",
+      name: (
+        <>
+          Opta Pro Hub
+          <br />
+          Metrica Sports
+        </>
+      ),
+      shortName: "Performance Analysis",
+      image: "/images/skills/data-analysis.png",
     },
   ]
 
@@ -281,11 +303,10 @@ function SkillCard({
       {/* Desktop hover overlay - glassmorphism with blurred text */}
       {!isMobile && (
         <div
-          className={`absolute inset-0 rounded-xl flex items-center justify-center p-2 transition-all duration-300 ${
-            isHovered
+          className={`absolute inset-0 rounded-xl flex items-center justify-center p-2 transition-all duration-300 ${isHovered
               ? "opacity-100 scale-100"
               : "opacity-0 scale-95 pointer-events-none"
-          }`}
+            }`}
           style={{
             background: "var(--skill-overlay-bg)",
             backdropFilter: "blur(12px)",
