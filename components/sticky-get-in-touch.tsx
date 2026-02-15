@@ -2,9 +2,12 @@
 
 import { useEffect, useState } from "react"
 import { ArrowUpRight } from "lucide-react"
+/* i18n hook for French / English translations */
+import { useLanguage } from "@/context/language-context"
 
 export function StickyGetInTouch() {
   const [visible, setVisible] = useState(false)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const presentationEl = document.getElementById("presentation")
@@ -14,7 +17,6 @@ export function StickyGetInTouch() {
     let contactVisible = false
 
     function update() {
-      // Hide when profile card (presentation) OR contact section is on screen
       setVisible(!presentationVisible && !contactVisible)
     }
 
@@ -50,7 +52,8 @@ export function StickyGetInTouch() {
         href="#contact"
         className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#033580] to-[#056BFF] px-8 py-3.5 text-sm font-medium text-primary-foreground shadow-[0_4px_20px_rgba(5,107,255,0.5),0_0_40px_rgba(5,107,255,0.15)] hover:opacity-90 transition-opacity"
       >
-        Get in Touch
+        {/* Translated CTA */}
+        {t("sticky.getInTouch")}
         <ArrowUpRight className="h-4 w-4" />
       </a>
     </div>

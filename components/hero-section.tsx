@@ -5,6 +5,8 @@ import { Phone, ArrowUpRight, X } from "lucide-react"
 import { useState, useEffect } from "react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 import { useMediaQuery } from "@/hooks/use-mobile"
+/* i18n hook for French / English translations */
+import { useLanguage } from "@/context/language-context"
 
 const expertTools: {
   name: string
@@ -95,6 +97,8 @@ export function HeroSection() {
   const { ref: skillsRef, isVisible: skillsVisible } = useScrollReveal(0.1)
   const [expandedSkill, setExpandedSkill] = useState<string | null>(null)
   const isMobile = useMediaQuery("(max-width: 1023px)")
+  /* i18n */
+  const { t } = useLanguage()
 
   useEffect(() => {
     if (expandedSkill !== null) {
@@ -126,10 +130,10 @@ export function HeroSection() {
               />
             </div>
             <h1 className="font-heading text-2xl font-bold text-foreground mb-2 text-center">
-              Stephen Kouanga
+              {t("hero.name")}
             </h1>
             <p className="text-muted-foreground text-sm leading-relaxed mb-5 text-center">
-              Data enthusiast focused on automation and intelligent solutions, transforming complex data into impactful insights.
+              {t("hero.bio")}
             </p>
             {/* Buttons: stacked on mobile, side-by-side on sm+ */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto mt-auto">
@@ -138,13 +142,13 @@ export function HeroSection() {
                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card sm:px-12 py-6 text-xs sm:text-sm font-medium text-foreground shadow-[0_2px_8px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.06)] hover:bg-secondary transition-colors whitespace-nowrap w-full sm:w-auto"
               >
                 <Phone className="h-4 w-4 shrink-0" />
-                Contact Me
+                {t("hero.contactMe")}
               </a>
               <a
                 href="#contact"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#033580] to-[#056BFF] sm:px-12 py-6 text-xs sm:text-sm font-medium text-primary-foreground shadow-[0_4px_14px_rgba(5,107,255,0.35),inset_0_1px_0_rgba(255,255,255,0.15)] hover:opacity-90 transition-opacity whitespace-nowrap w-full sm:w-auto"
               >
-                Get in Touch
+                {t("hero.getInTouch")}
                 <ArrowUpRight className="h-4 w-4 shrink-0" />
               </a>
             </div>
@@ -157,7 +161,7 @@ export function HeroSection() {
             style={{ animationDelay: "0.2s" }}
           >
             <h2 className="font-heading text-4xl font-bold text-muted-foreground mb-6 lg:text-left">
-              My Expert area
+              {t("hero.expertArea")}
             </h2>
             <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 flex-1">
               {expertTools.map((tool) => (
