@@ -1,6 +1,11 @@
 "use client"
 
+/* i18n hook for French / English translations */
+import { useLanguage } from "@/context/language-context"
+
 export function Footer() {
+  const { t } = useLanguage()
+
   return (
     <footer className="bg-background/80 backdrop-blur border-t border-border py-8 px-6">
       <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -12,8 +17,9 @@ export function Footer() {
             Stephen Kouanga
           </span>
         </div>
+        {/* Translated copyright */}
         <p className="text-muted-foreground text-xs">
-          {"2026 Stephen Kouanga. All rights reserved."}
+          {t("footer.rights")}
         </p>
         <div className="flex items-center gap-5">
           <a
