@@ -103,7 +103,7 @@ export function Navbar() {
           {/* ===== Desktop Nav — liquid glass pill ===== */}
           {/* Hover drives the shiny glass highlight; scroll-tracked active section gets a subtle dot */}
           <div
-            className="hidden md:flex items-center liquid-glass-nav rounded-full px-1.5 py-1.5"
+            className="hidden lg:flex items-center liquid-glass-nav rounded-full px-1.5 py-1.5"
             onMouseLeave={() => setHoveredItem(null)}
           >
             {navItems.map((item) => {
@@ -136,7 +136,7 @@ export function Navbar() {
           </div>
 
           {/* ===== Desktop right buttons ===== */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             {/* French / English language toggle — circular flag button, liquid glass */}
             <button
               onClick={toggleLocale}
@@ -180,20 +180,43 @@ export function Navbar() {
             </button>
           </div>
 
-          {/* ===== Mobile hamburger — liquid glass ===== */}
-          <button
-            className="md:hidden flex items-center justify-center h-10 w-10 rounded-xl liquid-glass-btn text-white transition-all duration-300 hover:scale-105"
-            onClick={() => setMobileOpen(true)}
-            aria-label="Open menu"
-          >
-            <Menu className="h-5 w-5" />
-          </button>
+          {/* ===== Mobile/Tablet right group — language toggle + hamburger ===== */}
+          <div className="lg:hidden flex items-center gap-2">
+            {/* Language toggle next to menu icon */}
+            <button
+              onClick={toggleLocale}
+              className="liquid-glass-btn h-10 w-10 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 hover:scale-105"
+              aria-label={locale === "en" ? "Switch to French" : "Switch to English"}
+              title={locale === "en" ? "Passer en Fran\u00e7ais" : "Switch to English"}
+            >
+              {locale === "en" ? (
+                <Image
+                  src="/images/french-flag.png"
+                  alt="French"
+                  width={22}
+                  height={22}
+                  className="rounded-full object-cover"
+                />
+              ) : (
+                <span className="text-white font-bold text-xs leading-none">EN</span>
+              )}
+            </button>
+
+            {/* Hamburger button — liquid glass */}
+            <button
+              className="flex items-center justify-center h-10 w-10 rounded-xl liquid-glass-btn text-white transition-all duration-300 hover:scale-105"
+              onClick={() => setMobileOpen(true)}
+              aria-label="Open menu"
+            >
+              <Menu className="h-5 w-5" />
+            </button>
+          </div>
         </div>
       </nav>
 
       {/* ===== Mobile Overlay — liquid glass backdrop ===== */}
       <div
-        className={`fixed inset-0 z-[100] transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-[100] transition-opacity duration-300 lg:hidden ${
           mobileOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
@@ -250,50 +273,26 @@ export function Navbar() {
               </button>
             ))}
 
-            {/* Bottom row: language toggle + theme toggle */}
-            <div className="flex items-center gap-3 mt-3">
-              {/* Language toggle — circular flag, liquid glass */}
-              <button
-                onClick={() => {
-                  toggleLocale()
-                }}
-                className="liquid-glass-btn h-12 w-12 rounded-full flex items-center justify-center overflow-hidden shrink-0 transition-all duration-300 hover:scale-105"
-                aria-label={locale === "en" ? "Switch to French" : "Switch to English"}
-              >
-                {locale === "en" ? (
-                  <Image
-                    src="/images/french-flag.png"
-                    alt="French"
-                    width={28}
-                    height={28}
-                    className="rounded-full object-cover"
-                  />
-                ) : (
-                  <span className="text-white font-bold text-sm leading-none">EN</span>
-                )}
-              </button>
-
-              {/* Theme toggle — liquid glass */}
-              <button
-                onClick={() => {
-                  setIsDark(!isDark)
-                  setMobileOpen(false)
-                }}
-                className="liquid-glass-btn flex-1 flex items-center justify-center gap-2 text-white rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-300"
-              >
-                {isDark ? (
-                  <>
-                    <Sun className="h-4 w-4" />
-                    <span>{t("nav.lightSide")}</span>
-                  </>
-                ) : (
-                  <>
-                    <Moon className="h-4 w-4" />
-                    <span>{t("nav.darkSide")}</span>
-                  </>
-                )}
-              </button>
-            </div>
+            {/* Theme toggle — liquid glass (language is in the top bar) */}
+            <button
+              onClick={() => {
+                setIsDark(!isDark)
+                setMobileOpen(false)
+              }}
+              className="liquid-glass-btn flex items-center justify-center gap-2 text-white rounded-xl px-5 py-3 mt-3 text-sm font-semibold transition-all duration-300"
+            >
+              {isDark ? (
+                <>
+                  <Sun className="h-4 w-4" />
+                  <span>{t("nav.lightSide")}</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="h-4 w-4" />
+                  <span>{t("nav.darkSide")}</span>
+                </>
+              )}
+            </button>
           </div>
         </div>
       </div>
