@@ -8,111 +8,52 @@ import { useMediaQuery } from "@/hooks/use-mobile"
 /* i18n hook for French / English translations */
 import { useLanguage } from "@/context/language-context"
 
-const expertTools: {
-  name: string | React.ReactNode
-  shortName: string
+/* Each tool uses i18n keys — "nameKey" for the detail text (may contain \n)
+   and "shortNameKey" for the label shown below the icon. */
+interface ExpertTool {
+  nameKey: string      // translation key for detail text (hover overlay / popup)
+  shortNameKey: string // translation key for short label
+  id: string           // unique stable id for React keys
   image?: string
   icon?: React.ReactNode
-}[] = [
-    {
-      name: (
-        <>
-          Pandas
-          <br />
-          NumPy
-          <br />
-          Data cleaning
-        </>
-      ),
-      shortName: "Python",
-      image: "/images/skills/python.png",
-    },
-    {
-      name: (
-        <>
-          MySQL
-          <br />
-          SQL Lite
-        </>
-      ),
-      shortName: "SQL",
-      image: "/images/skills/sql.png",
-    },
-    {
-      name: "PostgreSQL",
-      shortName: "PostgreSQL",
-      image: "/images/skills/postgresql.png",
-    },
-    {
-      name: (
-        <>
-          Data modelling
-          <br />
-          Dashboarding
-          <br />
-          Statistical analyses
-        </>
-      ),
-      shortName: "Data Analytics",
-      image: "/images/skills/database.png",
-    },
-    {
-      name: (
-        <>
-          Power BI (DAX, Power Query)
-          <br />
-          Tableau
-        </>
-      ),
-      shortName: "BI & Data Visualization",
-      image: "/images/skills/BI.png",
-    },
-    {
-      name: "R",
-      shortName: "Language R",
-      image: "/images/skills/R_icon.svg",
-    },
-    {
-      name: "Visual Basic",
-      shortName: "Visual Basic",
-      image: "/images/skills/vba.png",
-    },
-    {
-      name: "HTML",
-      shortName: "HTML",
-      image: "/images/skills/html5.webp",
-    },
-    {
-      name: "CSS",
-      shortName: "CSS",
-      image: "/images/skills/css3.webp",
-    },
-    {
-      name: "PHP",
-      shortName: "PHP",
-      image: "/images/skills/php.png",
-    },
-    {
-      name: "Git",
-      shortName: "Git",
-      icon: (
-        <svg viewBox="0 0 24 24" className="h-full w-full">
-          <path d="M23.546 10.93L13.067.452a1.55 1.55 0 00-2.188 0L8.708 2.627l2.76 2.76a1.838 1.838 0 012.327 2.344l2.66 2.66a1.838 1.838 0 11-1.103 1.03l-2.483-2.483v6.534a1.838 1.838 0 11-1.512-.09V8.762a1.838 1.838 0 01-.998-2.41L7.629 3.622.452 10.798a1.55 1.55 0 000 2.19l10.48 10.478a1.55 1.55 0 002.186 0l10.428-10.349a1.55 1.55 0 000-2.187" fill="#F05032" />
-        </svg>
-      ),
-    },
-    {
-      name: (
-        <>
-          Opta Pro Hub
-          <br />
-          Metrica Sports
-        </>
-      ),
-      shortName: "Performance Analysis",
-      image: "/images/skills/data-analysis.png",
-    },
-  ]
+}
+
+const expertTools: ExpertTool[] = [
+  { id: "python", nameKey: "tool.python.name", shortNameKey: "tool.python.short", image: "/images/skills/python.png" },
+  { id: "sql", nameKey: "tool.sql.name", shortNameKey: "tool.sql.short", image: "/images/skills/sql.png" },
+  { id: "postgresql", nameKey: "tool.postgresql.name", shortNameKey: "tool.postgresql.short", image: "/images/skills/postgresql.png" },
+  { id: "analytics", nameKey: "tool.analytics.name", shortNameKey: "tool.analytics.short", image: "/images/skills/database.png" },
+  { id: "bi", nameKey: "tool.bi.name", shortNameKey: "tool.bi.short", image: "/images/skills/BI.png" },
+  { id: "r", nameKey: "tool.r.name", shortNameKey: "tool.r.short", image: "/images/skills/R_icon.svg" },
+  { id: "vba", nameKey: "tool.vba.name", shortNameKey: "tool.vba.short", image: "/images/skills/vba.png" },
+  { id: "html", nameKey: "tool.html.name", shortNameKey: "tool.html.short", image: "/images/skills/html5.webp" },
+  { id: "css", nameKey: "tool.css.name", shortNameKey: "tool.css.short", image: "/images/skills/css3.webp" },
+  { id: "php", nameKey: "tool.php.name", shortNameKey: "tool.php.short", image: "/images/skills/php.png" },
+  {
+    id: "git", nameKey: "tool.git.name", shortNameKey: "tool.git.short",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-full w-full">
+        <path d="M23.546 10.93L13.067.452a1.55 1.55 0 00-2.188 0L8.708 2.627l2.76 2.76a1.838 1.838 0 012.327 2.344l2.66 2.66a1.838 1.838 0 11-1.103 1.03l-2.483-2.483v6.534a1.838 1.838 0 11-1.512-.09V8.762a1.838 1.838 0 01-.998-2.41L7.629 3.622.452 10.798a1.55 1.55 0 000 2.19l10.48 10.478a1.55 1.55 0 002.186 0l10.428-10.349a1.55 1.55 0 000-2.187" fill="#F05032" />
+      </svg>
+    ),
+  },
+  { id: "perf", nameKey: "tool.perf.name", shortNameKey: "tool.perf.short", image: "/images/skills/data-analysis.png" },
+]
+
+/** Renders a translated string that may contain \n as line breaks */
+function TranslatedLines({ text }: { text: string }) {
+  const parts = text.split("\n")
+  return (
+    <>
+      {parts.map((line, i) => (
+        <span key={i}>
+          {line}
+          {i < parts.length - 1 && <br />}
+        </span>
+      ))}
+    </>
+  )
+}
 
 export function HeroSection() {
   const { ref: heroRef, isVisible: heroVisible } = useScrollReveal(0.1)
@@ -188,10 +129,11 @@ export function HeroSection() {
             <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 flex-1">
               {expertTools.map((tool) => (
                 <SkillCard
-                  key={tool.shortName}
+                  key={tool.id}
                   tool={tool}
                   isMobile={isMobile}
-                  onExpand={() => setExpandedSkill(tool.shortName)}
+                  t={t}
+                  onExpand={() => setExpandedSkill(tool.id)}
                 />
               ))}
             </div>
@@ -219,7 +161,7 @@ export function HeroSection() {
             </button>
 
             {(() => {
-              const tool = expertTools.find((t) => t.shortName === expandedSkill)
+              const tool = expertTools.find((item) => item.id === expandedSkill)
               if (!tool) return null
               return (
                 <div className="flex flex-col items-center text-center">
@@ -227,7 +169,7 @@ export function HeroSection() {
                     {tool.image ? (
                       <img
                         src={tool.image}
-                        alt={tool.shortName}
+                        alt={t(tool.shortNameKey)}
                         className="h-16 w-16 object-contain"
                       />
                     ) : (
@@ -235,10 +177,10 @@ export function HeroSection() {
                     )}
                   </div>
                   <h3 className="font-heading text-xl font-bold text-foreground mb-3">
-                    {tool.shortName}
+                    {t(tool.shortNameKey)}
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
-                    {tool.name}
+                    <TranslatedLines text={t(tool.nameKey)} />
                   </p>
                 </div>
               )
@@ -253,13 +195,17 @@ export function HeroSection() {
 function SkillCard({
   tool,
   isMobile,
+  t,
   onExpand,
 }: {
-  tool: (typeof expertTools)[0]
+  tool: ExpertTool
   isMobile: boolean
+  t: (key: string) => string
   onExpand: () => void
 }) {
   const [isHovered, setIsHovered] = useState(false)
+  /* Resolve translated strings */
+  const shortName = t(tool.shortNameKey)
 
   return (
     <div
@@ -275,7 +221,7 @@ function SkillCard({
       }}
       role="button"
       tabIndex={0}
-      aria-label={tool.shortName}
+      aria-label={shortName}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault()
@@ -289,7 +235,7 @@ function SkillCard({
         {tool.image ? (
           <img
             src={tool.image}
-            alt={tool.shortName}
+            alt={shortName}
             className="h-10 w-10 object-contain"
           />
         ) : (
@@ -297,10 +243,10 @@ function SkillCard({
         )}
       </div>
       <span className="text-[11px] font-medium text-muted-foreground text-center leading-tight transition-all duration-300">
-        {tool.shortName}
+        {shortName}
       </span>
 
-      {/* Desktop hover overlay - glassmorphism with blurred text */}
+      {/* Desktop hover overlay — glassmorphism with translated detail text */}
       {!isMobile && (
         <div
           className={`absolute inset-0 rounded-xl flex items-center justify-center p-2 transition-all duration-300 ${isHovered
@@ -320,7 +266,7 @@ function SkillCard({
               textShadow: "var(--skill-overlay-shadow)",
             }}
           >
-            {tool.name}
+            <TranslatedLines text={t(tool.nameKey)} />
           </span>
         </div>
       )}
