@@ -83,11 +83,10 @@ export function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
             ? "bg-background/90 backdrop-blur-md border-b border-border"
             : "bg-transparent"
-        }`}
+          }`}
       >
         <div className="mx-auto max-w-7xl flex items-center justify-between px-6 py-4">
           {/* Logo */}
@@ -115,15 +114,14 @@ export function Navbar() {
                   key={item.href}
                   href={item.href}
                   onMouseEnter={() => setHoveredItem(sectionId)}
-                  className={`relative px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-250 ease-out ${
-                    isHovered
+                  className={`relative px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-250 ease-out ${isHovered
                       ? /* Hovered item — bright liquid glass pill */
-                        "liquid-glass-nav-hover text-white"
+                      "liquid-glass-nav-hover text-white"
                       : isActive
                         ? /* Active (scroll-tracked) — slightly brighter text */
-                          "liquid-glass-nav-active text-white"
+                        "liquid-glass-nav-active text-white"
                         : "text-white/70 hover:text-white"
-                  }`}
+                    }`}
                 >
                   {t(item.labelKey)}
                   {/* Active section indicator dot — visible only when NOT hovered */}
@@ -216,11 +214,10 @@ export function Navbar() {
 
       {/* ===== Mobile Overlay — liquid glass backdrop ===== */}
       <div
-        className={`fixed inset-0 z-[100] transition-opacity duration-300 lg:hidden ${
-          mobileOpen
+        className={`fixed inset-0 z-[100] transition-opacity duration-300 lg:hidden ${mobileOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
-        }`}
+          }`}
       >
         {/* Blurred overlay background — liquid glass */}
         <div
@@ -230,9 +227,8 @@ export function Navbar() {
 
         {/* Mobile menu panel — liquid glass */}
         <div
-          className={`absolute inset-x-0 top-0 liquid-glass-menu border-b border-white/10 transition-transform duration-300 ease-out ${
-            mobileOpen ? "translate-y-0" : "-translate-y-full"
-          }`}
+          className={`absolute inset-x-0 top-0 liquid-glass-menu border-b border-white/10 transition-transform duration-300 ease-out ${mobileOpen ? "translate-y-0" : "-translate-y-full"
+            }`}
         >
           {/* Header row */}
           <div className="flex items-center justify-between px-6 py-4">
@@ -263,11 +259,10 @@ export function Navbar() {
               <button
                 key={item.href}
                 onClick={() => handleNavClick(item.href)}
-                className={`text-left px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${
-                  activeSection === item.href.slice(1)
+                className={`text-left px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${activeSection === item.href.slice(1)
                     ? "bg-gradient-to-r from-[#033580] to-[#056BFF] text-white"
                     : "text-white/70 hover:text-white hover:bg-white/10"
-                }`}
+                  }`}
               >
                 {t(item.labelKey)}
               </button>
