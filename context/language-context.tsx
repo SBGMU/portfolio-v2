@@ -123,6 +123,32 @@ const translations: Record<Locale, Record<string, string>> = {
     "contact.location": "Location",
     "contact.github": "GitHub",
 
+    /* Expert area tool details (shown on hover / in popup) */
+    "tool.python.name": "Pandas\nNumPy\nData cleaning",
+    "tool.python.short": "Python",
+    "tool.sql.name": "MySQL\nSQL Lite",
+    "tool.sql.short": "SQL",
+    "tool.postgresql.name": "PostgreSQL",
+    "tool.postgresql.short": "PostgreSQL",
+    "tool.analytics.name": "Data modelling\nDashboarding\nStatistical analyses",
+    "tool.analytics.short": "Data Analytics",
+    "tool.bi.name": "Power BI (DAX, Power Query)\nTableau",
+    "tool.bi.short": "BI & Data Visualization",
+    "tool.r.name": "R",
+    "tool.r.short": "Language R",
+    "tool.vba.name": "Visual Basic",
+    "tool.vba.short": "Visual Basic",
+    "tool.htmlcssjs.name": "HTML\nCSS\nJavaScript",
+    "tool.htmlcssjs.short": "HTML - CSS - JS",
+    "tool.php.name": "PHP",
+    "tool.php.short": "PHP",
+    "tool.git.name": "Git",
+    "tool.git.short": "Git",
+    "tool.communication.name": "Strong analytical\nSynthesis skills",
+    "tool.communication.short": "Communication",
+    "tool.perf.name": "Opta Pro Hub\nMetrica Sports",
+    "tool.perf.short": "Performance Analysis",
+
     /* Footer */
     "footer.rights": "2026 Stephen Kouanga. All rights reserved.",
 
@@ -140,16 +166,16 @@ const translations: Record<Locale, Record<string, string>> = {
     "nav.experiences": "Experiences",
     "nav.certifications": "Certifications",
     "nav.contact": "Contact",
-    "nav.lightSide": "Mode Clair",
-    "nav.darkSide": "Mode Sombre",
+    "nav.lightSide": "Light Side",
+    "nav.darkSide": "Dark Side",
 
     /* Hero / Presentation */
     "hero.name": "Stephen Kouanga",
     "hero.bio":
-      "Passionné de données, spécialisé dans l'automatisation et les solutions intelligentes, transformant des données complexes en insights percutantes.",
+      "Passionné de données, spécialisé dans l'automatisation et les solutions intelligentes, transformant des données complexes en insights percutants.",
     "hero.contactMe": "Me Contacter",
-    "hero.getInTouch": "Entrer en Contact",
-    "hero.expertArea": "Mes domaines d'expertise",
+    "hero.getInTouch": "Prendre Contact",
+    "hero.expertArea": "Mon Domaine d'expertise",
 
     /* About */
     "about.title": "A propos",
@@ -233,6 +259,32 @@ const translations: Record<Locale, Record<string, string>> = {
     "contact.location": "Localisation",
     "contact.github": "GitHub",
 
+    /* Expert area tool details (French) */
+    "tool.python.name": "Pandas\nNumPy\nNettoyage de donnees",
+    "tool.python.short": "Python",
+    "tool.sql.name": "MySQL\nSQL Lite",
+    "tool.sql.short": "SQL",
+    "tool.postgresql.name": "PostgreSQL",
+    "tool.postgresql.short": "PostgreSQL",
+    "tool.analytics.name": "Modelisation de donnees\nTableaux de bord\nAnalyses statistiques",
+    "tool.analytics.short": "Analyse de donnees",
+    "tool.bi.name": "Power BI (DAX, Power Query)\nTableau",
+    "tool.bi.short": "BI & Visualisation de donnees",
+    "tool.r.name": "R",
+    "tool.r.short": "Langage R",
+    "tool.vba.name": "Visual Basic",
+    "tool.vba.short": "Visual Basic",
+    "tool.htmlcssjs.name": "HTML\nCSS\nJavaScript",
+    "tool.htmlcssjs.short": "HTML - CSS - JS",
+    "tool.php.name": "PHP",
+    "tool.php.short": "PHP",
+    "tool.git.name": "Git",
+    "tool.git.short": "Git",
+    "tool.communication.name": "Forte capacité d’analyse\nCapacité de synthèse",
+    "tool.communication.short": "Communication",
+    "tool.perf.name": "Opta Pro Hub\nMetrica Sports",
+    "tool.perf.short": "Analyse de Performance",
+
     /* Footer */
     "footer.rights": "2026 Stephen Kouanga. Tous droits réservés.",
 
@@ -240,7 +292,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "download.resume": "Télécharger mon CV",
 
     /* Sticky */
-    "sticky.getInTouch": "Entrer en Contact",
+    "sticky.getInTouch": "Prendre Contact",
   },
 }
 
