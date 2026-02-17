@@ -26,8 +26,7 @@ const expertTools: ExpertTool[] = [
   { id: "bi", nameKey: "tool.bi.name", shortNameKey: "tool.bi.short", image: "/images/skills/BI.png" },
   { id: "r", nameKey: "tool.r.name", shortNameKey: "tool.r.short", image: "/images/skills/R_icon.svg" },
   { id: "vba", nameKey: "tool.vba.name", shortNameKey: "tool.vba.short", image: "/images/skills/vba.png" },
-  { id: "html", nameKey: "tool.html.name", shortNameKey: "tool.html.short", image: "/images/skills/html5.webp" },
-  { id: "css", nameKey: "tool.css.name", shortNameKey: "tool.css.short", image: "/images/skills/css3.webp" },
+  { id: "htmlcssjs", nameKey: "tool.htmlcssjs.name", shortNameKey: "tool.htmlcssjs.short", image: "/images/skills/html5-css3-js.png" },
   { id: "php", nameKey: "tool.php.name", shortNameKey: "tool.php.short", image: "/images/skills/php.png" },
   {
     id: "git", nameKey: "tool.git.name", shortNameKey: "tool.git.short",
@@ -37,6 +36,7 @@ const expertTools: ExpertTool[] = [
       </svg>
     ),
   },
+  { id: "communication", nameKey: "tool.communication.name", shortNameKey: "tool.communication.short", image: "/images/skills/filtering.png" },
   { id: "perf", nameKey: "tool.perf.name", shortNameKey: "tool.perf.short", image: "/images/skills/data-analysis.png" },
 ]
 
@@ -250,8 +250,8 @@ function SkillCard({
       {!isMobile && (
         <div
           className={`absolute inset-0 rounded-xl flex items-center justify-center p-2 transition-all duration-300 ${isHovered
-              ? "opacity-100 scale-100"
-              : "opacity-0 scale-95 pointer-events-none"
+            ? "opacity-100 scale-100"
+            : "opacity-0 scale-95 pointer-events-none"
             }`}
           style={{
             background: "var(--skill-overlay-bg)",
