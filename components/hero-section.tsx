@@ -188,10 +188,10 @@ export function HeroSection() {
             <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 flex-1">
               {expertTools.map((tool) => (
                 <SkillCard
-                  key={tool.name}
+                  key={tool.shortName}
                   tool={tool}
                   isMobile={isMobile}
-                  onExpand={() => setExpandedSkill(tool.name)}
+                  onExpand={() => setExpandedSkill(tool.shortName)}
                 />
               ))}
             </div>
@@ -219,7 +219,7 @@ export function HeroSection() {
             </button>
 
             {(() => {
-              const tool = expertTools.find((t) => t.name === expandedSkill)
+              const tool = expertTools.find((t) => t.shortName === expandedSkill)
               if (!tool) return null
               return (
                 <div className="flex flex-col items-center text-center">
@@ -227,7 +227,7 @@ export function HeroSection() {
                     {tool.image ? (
                       <img
                         src={tool.image}
-                        alt={tool.name}
+                        alt={tool.shortName}
                         className="h-16 w-16 object-contain"
                       />
                     ) : (
@@ -275,7 +275,7 @@ function SkillCard({
       }}
       role="button"
       tabIndex={0}
-      aria-label={tool.name}
+      aria-label={tool.shortName}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault()
@@ -289,7 +289,7 @@ function SkillCard({
         {tool.image ? (
           <img
             src={tool.image}
-            alt={tool.name}
+            alt={tool.shortName}
             className="h-10 w-10 object-contain"
           />
         ) : (
