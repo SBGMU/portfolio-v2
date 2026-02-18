@@ -250,8 +250,8 @@ function SkillCard({
       {!isMobile && (
         <div
           className={`absolute inset-0 rounded-xl flex items-center justify-center p-2 transition-all duration-300 ${isHovered
-              ? "opacity-100 scale-100"
-              : "opacity-0 scale-95 pointer-events-none"
+            ? "opacity-100 scale-100"
+            : "opacity-0 scale-95 pointer-events-none"
             }`}
           style={{
             background: "var(--skill-overlay-bg)",

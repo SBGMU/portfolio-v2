@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { CreditCard, Database, Monitor, Car, MapPin, Calendar, Clock, X, Building2 } from "lucide-react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 /* i18n hook for French / English translations */
-import { useLanguage } from "@/context/language-context"
+import { useLanguage, RichText } from "@/context/language-context"
 
 /**
  * Experience entries — each entry uses translation keys so the content
@@ -114,12 +114,12 @@ export function ServicesSection() {
               </div>
             </div>
 
-            {/* Description — paragraphs separated by \n\n in the translation */}
+            {/* Description — paragraphs separated by \n\n, with **bold** markers */}
             <div className="text-muted-foreground text-sm leading-relaxed space-y-4">
               {t(`${experienceKeys[expandedIndex].prefix}.desc`)
                 .split("\n\n")
                 .map((paragraph, i) => (
-                  <p key={i}>{paragraph}</p>
+                  <p key={i}><RichText text={paragraph} /></p>
                 ))}
             </div>
           </div>
@@ -180,7 +180,7 @@ function ExperienceCard({
       </div>
 
       <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 flex-1">
-        {t(`${prefix}.preview`)}
+        <RichText text={t(`${prefix}.preview`)} />
       </p>
 
       {/* "See more" link — translated */}
