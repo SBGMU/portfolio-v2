@@ -2,7 +2,7 @@
 
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 /* i18n hook for French / English translations */
-import { useLanguage } from "@/context/language-context"
+import { useLanguage, RichText } from "@/context/language-context"
 
 export function AboutSection() {
   const { ref: headRef, isVisible: headVisible } = useScrollReveal(0.1)
@@ -24,7 +24,7 @@ export function AboutSection() {
             {t("about.title")}
           </h2>
           <p className="text-muted-foreground leading-relaxed w-full text-justify">
-            {t("about.description")}
+            <RichText text={t("about.description")} />
           </p>
         </div>
 
