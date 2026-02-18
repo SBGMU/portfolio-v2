@@ -44,7 +44,7 @@ const translations: Record<Locale, Record<string, string>> = {
     /* About */
     "about.title": "About Me",
     "about.description":
-      "**Data professional** specializing in **process automation** and **data visualization**. I have mastered the complete **data lifecycle**: from collection, cleaning, transformation (**ETL**), and modeling to **interactive reporting**. My expertise includes **Python** (Pandas, NumPy), **SQL**, **Power BI** (DAX, Power Query), **VBA**, and other technologies to ensure **data reliability** and optimize **operational performance**.",
+      "**Data professional** specializing in **process automation** and **data visualization**. I have mastered the complete **data lifecycle**: from collection, cleaning, transformation (**ETL**), and modeling to interactive reporting. My expertise includes **Python** (**Pandas**, **NumPy**), **SQL**, **Power BI** (**DAX**, **Power Query**), **VBA**, and other technologies to ensure data reliability and optimize operational performance.",
     "about.stat1": "Adaptability",
     "about.stat2": "Pedagogical skills",
     "about.stat3": "Team player mindset",
@@ -62,9 +62,9 @@ const translations: Record<Locale, Record<string, string>> = {
     "exp.1.date": "Sep 2024 - Present",
     "exp.1.duration": "1.5 years",
     "exp.1.preview":
-      "Designed **interactive and dynamic dashboards** to monitor over **1300 ATM migrations** to Cash Services in real time.",
+      "Designed **interactive dashboards** to monitor over **1,300 ATM migrations** to Cash Services in real time.",
     "exp.1.desc":
-      "Designed **interactive and dynamic dashboards** to monitor over **1300 ATM migrations** to Cash Services in real time, providing **strategic and accurate visibility** on key operational data. Coordinated **pre-migration interventions** including infrastructure setup with property owners, Bouygues Telecom, Orange Business, BRINKS, and Loomis.\n\nBuild and **automate complex processes** using **VBA** to optimize the management of project and ATM databases.\n\nDeveloped and led **advanced statistical analyses** (migration time by technician, incident tracking, and regional performance trends). Enhanced **data reliability** through advanced cross-referencing in **Excel**, ensuring high-quality traceability and alignment across partner decision-making teams.",
+      "Designed **interactive dashboards** to monitor over **1,300 ATM migrations** to Cash Services in real time, providing strategic and accurate visibility on key **operational data**. Coordinated pre-migration interventions including infrastructure setup with property owners, Bouygues Telecom, Orange Business, BRINKS, and Loomis.\n\nBuilt and **automated** complex processes using **VBA** to optimize the management of project and ATM **databases**.\n\nDeveloped and led **statistical analyses** (migration time by technician, incident tracking, and regional performance trends). Enhanced **data reliability** through advanced cross-referencing in **Excel**, ensuring high-quality traceability and alignment across partner decision-making teams.",
 
     /* Experience 2 */
     "exp.2.title": "Database Manager",
@@ -73,9 +73,9 @@ const translations: Record<Locale, Record<string, string>> = {
     "exp.2.date": "Aug 2024 - Sep 2024",
     "exp.2.duration": "2 months",
     "exp.2.preview":
-      "Maintained and optimised the **HR onboarding integration database** for VCGI using **VBA** and **Index-Match** formulas.",
+      "Maintained and optimised the **HR database** for VCGI using **VBA** and **Index-Match** formulas.",
     "exp.2.desc":
-      "Maintained and optimised the **HR onboarding integration database** for VCGI using **VBA** and **Index-Match** formulas to collect and input employee data.\n\nUpdated and validated records to ensure **data accuracy** and **compliance** within the VCGI system.\n\nSecured sensitive information in line with **GDPR standards**.",
+      "Maintained and optimised the **HR onboarding database** for VCGI using **VBA** and **Index-Match** formulas to collect and input employee data.\n\nUpdated and validated records to ensure **data accuracy** and **compliance** within the VCGI system.\n\nSecured sensitive information in line with **GDPR**.",
 
     /* Experience 3 */
     "exp.3.title": "PHP Developer",
@@ -84,9 +84,9 @@ const translations: Record<Locale, Record<string, string>> = {
     "exp.3.date": "Jan 2018 - Jan 2020",
     "exp.3.duration": "2 years",
     "exp.3.preview":
-      "Rebuilt **online ticket booking platform** using **PHP**. Created **Excel VBA macros** and queried **SQL databases** for reporting.",
+      "Rebuilt online ticket booking platform using **PHP**. Created **VBA macros** and queried **SQL databases** for reporting.",
     "exp.3.desc":
-      "Rebuilt **online ticket booking platform** using **PHP**.\n\nCreated **Excel VBA macros**. Queried **SQL databases** for commercial reporting.\n\nManaged **digital communication** and automated **client data integration**.\n\nWeb forms and UI improvements led to a **40% increase** in user interaction.",
+      "Rebuilt online ticket booking platform using **PHP**.\n\nCreated **Excel VBA macros**. Queried **SQL databases** for commercial reporting.\n\nManaged digital communication and **automated** client **data integration**.\n\nWeb forms and UI improvements led to a **40% increase** in user interaction.",
 
     /* Experience 4 */
     "exp.4.title": "Web Developer",
@@ -95,9 +95,9 @@ const translations: Record<Locale, Record<string, string>> = {
     "exp.4.date": "Nov 2016 - Dec 2016",
     "exp.4.duration": "2 months",
     "exp.4.preview":
-      "Designed a **showcase website** using **PHP** and **MySQL**. Integrated **Google Maps API** for locating 3 branches.",
+      "Designed a showcase website using **PHP** and **MySQL**. Integrated **Google Maps API** for locating 3 branches.",
     "exp.4.desc":
-      "Designed a **showcase website** using **PHP** and **MySQL**. Integrated **Google Maps API** for locating 3 branches.\n\nCreated an **online contact and information request form**.\n\nIncreased potential student inquiries via email by **40%** over the year 2017.",
+      "Designed a showcase website using **PHP** and **MySQL**. Integrated **Google Maps API** for locating 3 branches.\n\nCreated an online contact and information request form.\n\nIncreased potential student inquiries via email by **40%** over the year 2017.",
 
     /* Certifications */
     "cert.title": "Certifications",
@@ -180,7 +180,7 @@ const translations: Record<Locale, Record<string, string>> = {
     /* About */
     "about.title": "A propos",
     "about.description":
-      "**Professionnel de la data** spécialisé dans **l'automatisation des processus** et la **visualisation de données**. J'ai maîtrisé le **cycle de vie complet des données** : de la collecte, nettoyage, transformation (**ETL**) et modélisation jusqu'au **reporting interactif**. Mon expertise inclut **Python** (Pandas, NumPy), **SQL**, **Power BI** (DAX, Power Query), **VBA** et d'autres technologies pour garantir la **fiabilité des données** et optimiser la **performance opérationnelle**.",
+      "**Professionnel de la data** spécialisé dans **l'automatisation des processus** et la **visualisation de données**. J'ai maîtrisé le cycle de vie complet des données : de la collecte, nettoyage, transformation (**ETL**) et modélisation jusqu'au reporting interactif. Mon expertise inclut **Python** (**Pandas**, **NumPy**), **SQL**, **Power BI** (**DAX**, **Power Query**), **VBA** et d'autres technologies pour garantir la fiabilité des données et optimiser la performance opérationnelle.",
     "about.stat1": "Adaptabilité",
     "about.stat2": "Compétences pédagogiques",
     "about.stat3": "Esprit d'équipe",
@@ -198,9 +198,9 @@ const translations: Record<Locale, Record<string, string>> = {
     "exp.1.date": "Sep 2024 - Présent",
     "exp.1.duration": "1,5 ans",
     "exp.1.preview":
-      "Conception de **tableaux de bord interactifs et dynamiques** pour suivre en temps réel la migration de plus de **1300 DAB** vers Cash Services.",
+      "Conception de **tableaux de bord interactifs** pour suivre en temps réel la migration de plus de **1 300 DAB** vers Cash Services.",
     "exp.1.desc":
-      "Conception de **tableaux de bord interactifs et dynamiques** pour suivre en temps réel la migration de plus de **1300 DAB** vers Cash Services, offrant une **visibilité stratégique et précise** sur les données opérationnelles clés. Coordination des **interventions pré-migration** incluant la mise en place d'infrastructures avec les propriétaires, Bouygues Telecom, Orange Business, BRINKS et Loomis.\n\n**Construction et automatisation** de processus complexes en **VBA** pour optimiser la gestion des bases de données projets et DAB.\n\nDéveloppement et conduite d'**analyses statistiques avancées** (temps de migration par technicien, suivi des incidents et tendances de performance régionale). Amélioration de la **fiabilité des données** par des recoupements avancés dans **Excel**, assurant une traçabilité de haute qualité et un alignement entre les équipes décisionnelles partenaires.",
+      "Conception de **tableaux de bord interactifs** pour suivre en temps réel la migration de plus de **1 300 DAB** vers Cash Services, offrant une visibilité stratégique et précise sur les **données opérationnelles** clés. Coordination des interventions pré-migration incluant la mise en place d'infrastructures avec les propriétaires, Bouygues Telecom, Orange Business, BRINKS et Loomis.\n\nConstruction et **automatisation** de processus complexes en **VBA** pour optimiser la gestion des **bases de données** projets et DAB.\n\nDéveloppement et conduite d'**analyses statistiques** (temps de migration par technicien, suivi des incidents et tendances de performance régionale). Amélioration de la **fiabilité des données** par des recoupements avancés dans **Excel**, assurant une traçabilité de haute qualité et un alignement entre les équipes décisionnelles partenaires.",
 
     /* Experience 2 */
     "exp.2.title": "Gestionnaire de Base de Données",
@@ -209,9 +209,9 @@ const translations: Record<Locale, Record<string, string>> = {
     "exp.2.date": "Août 2024 - Sep 2024",
     "exp.2.duration": "2 mois",
     "exp.2.preview":
-      "Maintenance et optimisation de la **base de données d'intégration RH** pour VCGI à l'aide de **VBA** et de formules **Index-Match**.",
+      "Maintenance et optimisation de la **base de données RH** pour VCGI à l'aide de **VBA** et de formules **Index-Match**.",
     "exp.2.desc":
-      "Maintenance et optimisation de la **base de données d'intégration RH** pour VCGI à l'aide de **VBA** et de formules **Index-Match** pour collecter et saisir les données des employés.\n\nMise à jour et validation des enregistrements pour assurer l'**exactitude des données** et la **conformité** au sein du système VCGI.\n\nSécurisation des informations sensibles conformément aux **normes RGPD**.",
+      "Maintenance et optimisation de la **base de données RH** pour VCGI à l'aide de **VBA** et de formules **Index-Match** pour collecter et saisir les données des employés.\n\nMise à jour et validation des enregistrements pour assurer l'**exactitude des données** et la **conformité** au sein du système VCGI.\n\nSécurisation des informations sensibles conformément au **RGPD**.",
 
     /* Experience 3 */
     "exp.3.title": "Développeur PHP",
@@ -220,9 +220,9 @@ const translations: Record<Locale, Record<string, string>> = {
     "exp.3.date": "Jan 2018 - Jan 2020",
     "exp.3.duration": "2 ans",
     "exp.3.preview":
-      "Refonte de la **plateforme de réservation de billets en ligne** en **PHP**. Création de **macros VBA Excel** et requêtes **SQL** pour le reporting.",
+      "Refonte de la plateforme de réservation en ligne en **PHP**. Création de **macros VBA** et requêtes **SQL** pour le reporting.",
     "exp.3.desc":
-      "Refonte de la **plateforme de réservation de billets en ligne** en **PHP**.\n\nCréation de **macros VBA Excel**. Requêtes sur des **bases de données SQL** pour le reporting commercial.\n\nGestion de la **communication digitale** et automatisation de l'**intégration des données clients**.\n\nLes formulaires web et améliorations UI ont conduit à une **augmentation de 40%** de l'interaction utilisateur.",
+      "Refonte de la plateforme de réservation de billets en ligne en **PHP**.\n\nCréation de **macros VBA Excel**. Requêtes sur des **bases de données SQL** pour le reporting commercial.\n\nGestion de la communication digitale et **automatisation** de l'**intégration des données** clients.\n\nLes formulaires web et améliorations UI ont conduit à une augmentation de **40%** de l'interaction utilisateur.",
 
     /* Experience 4 */
     "exp.4.title": "Développeur Web",
@@ -231,9 +231,9 @@ const translations: Record<Locale, Record<string, string>> = {
     "exp.4.date": "Nov 2016 - Déc 2016",
     "exp.4.duration": "2 mois",
     "exp.4.preview":
-      "Conception d'un **site vitrine** en **PHP** et **MySQL**. Intégration de l'**API Google Maps** pour localiser 3 agences.",
+      "Conception d'un site vitrine en **PHP** et **MySQL**. Intégration de l'**API Google Maps** pour localiser 3 agences.",
     "exp.4.desc":
-      "Conception d'un **site vitrine** en **PHP** et **MySQL**. Intégration de l'**API Google Maps** pour localiser 3 agences.\n\nCréation d'un **formulaire de contact et de demande d'information** en ligne.\n\nAugmentation de **40%** des demandes de renseignements d'étudiants potentiels par email sur l'année 2017.",
+      "Conception d'un site vitrine en **PHP** et **MySQL**. Intégration de l'**API Google Maps** pour localiser 3 agences.\n\nCréation d'un formulaire de contact et de demande d'information en ligne.\n\nAugmentation de **40%** des demandes de renseignements d'étudiants potentiels par email sur l'année 2017.",
 
     /* Certifications */
     "cert.title": "Certifications",
