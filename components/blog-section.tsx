@@ -31,7 +31,7 @@ export function BlogSection() {
           ref={ref}
           className={`${isVisible ? "reveal-up" : "opacity-0"}`}
         >
-          <h2 className="font-heading text-3xl font-bold text-foreground mb-3">
+          <h2 className="text-gradient font-heading text-3xl font-bold mb-3">
             Latest Articles
           </h2>
           <p className="text-muted-foreground text-sm mb-10 max-w-lg">

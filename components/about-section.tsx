@@ -20,7 +20,7 @@ export function AboutSection() {
           ref={headRef}
           className={`w-full mb-12 ${headVisible ? "reveal-up" : "opacity-0"}`}
         >
-          <h2 className="font-heading text-5xl font-bold text-muted-foreground mb-4">
+          <h2 className="text-gradient font-heading text-5xl font-bold mb-4">
             {t("about.title")}
           </h2>
           <p className="text-muted-foreground leading-relaxed w-full text-justify">

@@ -20,7 +20,7 @@ export function CertificationsSection() {
           ref={ref}
           className={`${isVisible ? "reveal-up" : "opacity-0"}`}
         >
-          <h2 className="font-heading text-5xl font-bold text-muted-foreground mb-12">
+          <h2 className="text-gradient font-heading text-5xl font-bold mb-12">
             {t("cert.title")}
           </h2>
         </div>

@@ -54,7 +54,7 @@ export function ContactSection() {
         >
           <div className="bg-card rounded-2xl border border-border p-8 lg:p-12 w-full shadow-[0_8px_30px_rgba(0,0,0,0.3),0_2px_8px_rgba(0,0,0,0.2)]">
             <div className="text-left mb-10">
-              <h2 className="font-heading text-4xl lg:text-4xl font-bold text-muted-foreground mb-4">
+              <h2 className="text-gradient font-heading text-4xl lg:text-4xl font-bold mb-4">
                 {t("contact.title")}
               </h2>
               <p className="text-muted-foreground text-sm leading-relaxed max-w-xl text-justify">

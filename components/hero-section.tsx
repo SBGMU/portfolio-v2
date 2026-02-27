@@ -123,7 +123,7 @@ export function HeroSection() {
             className={`bg-card rounded-2xl p-6 border border-border shadow-[0_8px_30px_rgba(0,0,0,0.3),0_2px_8px_rgba(0,0,0,0.2)] flex flex-col ${skillsVisible ? "reveal-scale" : "opacity-0"}`}
             style={{ animationDelay: "0.2s" }}
           >
-            <h2 className="font-heading text-4xl font-bold text-muted-foreground mb-6 lg:text-left">
+            <h2 className="text-gradient font-heading text-4xl font-bold mb-6 lg:text-left">
               {t("hero.expertArea")}
             </h2>
             <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 flex-1">

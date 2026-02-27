@@ -12,10 +12,12 @@ import { StickyGetInTouch } from "@/components/sticky-get-in-touch"
 import { DownloadResume } from "@/components/download-resume"
 /* i18n provider wraps the entire page so every component can access translations */
 import { LanguageProvider } from "@/context/language-context"
+import { PageLoader } from "@/components/page-loader"
 
 export default function Page() {
   return (
     <LanguageProvider>
+      <PageLoader />
       <main className="min-h-screen">
         <ScrollProgressBar />
         <Navbar />
