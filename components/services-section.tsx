@@ -19,9 +19,12 @@ const experienceKeys = [
 ]
 
 /* ---- Pinned stage tuning ---- */
-const STAGE_MIN_HEIGHT_PX = 640 // below this viewport height (e.g. a phone in landscape) a card no longer fits the stage
+const STAGE_HEAD_PAD_PX = { compact: 120, wide: 144 } // space above the title, clearing the navbar (below / from lg)
+const STAGE_TITLE_GAP_PX = 24  // minimum space kept between the title and the cards
+const STAGE_BOTTOM_PAD_PX = 16 // minimum space kept under the pile
+const WIDE_QUERY = "(min-width: 1024px)" // Tailwind lg
 const STAGE_STEP_VH = 70     // scroll distance (in viewport heights ×100) spent on each extra card
-const PILE_GAP_PX = 18       // vertical offset between two stacked cards (the header strip left peeking)
+const PILE_GAP_PX = { compact: 12, wide: 18 } // vertical offset between two stacked cards (the header strip left peeking)
 const PILE_SCALE_STEP = 0.045 // how much a card shrinks per card resting on top of it
 const PILE_DIM_STEP = 0.16    // how much a card dims per card resting on top of it
 
@@ -37,7 +40,7 @@ export function ServicesSection() {
   const [isStatic, setIsStatic] = useState(false)
   const count = experienceKeys.length
   /* i18n */
-  const { t } = useLanguage()
+  const { t, locale } = useLanguage()
 
   useEffect(() => {
     if (expandedIndex !== null) {
@@ -57,11 +60,53 @@ export function ServicesSection() {
      Scrolling back up plays it in reverse. */
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
-    const decide = () => setIsStatic(reduceMotion.matches || window.innerHeight < STAGE_MIN_HEIGHT_PX)
+
+    /* Height of the pinned stage (100svh). Read from a probe rather than
+       window.innerHeight, which changes on phones as the browser bars slide away. */
+    const stageHeight = () => {
+      const probe = document.createElement("div")
+      probe.style.cssText = "position:fixed;top:0;left:0;width:0;height:100svh;visibility:hidden;pointer-events:none"
+      document.body.appendChild(probe)
+      const height = probe.offsetHeight || window.innerHeight
+      probe.remove()
+      return height
+    }
+
+    /* The stage is only pinned when title + gap + one card + the pile fit in it */
+    const decide = () => {
+      const pin = pinRef.current
+      let fits = true
+      if (pin) {
+        const wide = window.matchMedia(WIDE_QUERY).matches
+        const cards = Array.from(pin.querySelectorAll<HTMLElement>("[data-stack-card]"))
+        const title = pin.querySelector<HTMLElement>("#experiences-title")
+        const cardHeight = Math.max(0, ...cards.map((card) => card.offsetHeight))
+        const needed =
+          (wide ? STAGE_HEAD_PAD_PX.wide : STAGE_HEAD_PAD_PX.compact) +
+          (title?.offsetHeight ?? 0) +
+          STAGE_TITLE_GAP_PX +
+          cardHeight +
+          (cards.length - 1) * (wide ? PILE_GAP_PX.wide : PILE_GAP_PX.compact) +
+          STAGE_BOTTOM_PAD_PX
+        fits = stageHeight() >= needed
+      }
+      setIsStatic(reduceMotion.matches || !fits)
+    }
+
+    /* Re-decide when the width changes (rotation, window resize), not on the height
+       changes caused by mobile browser bars, which would make the layout flip mid-scroll */
+    let lastWidth = window.innerWidth
+    const onResize = () => {
+      if (window.innerWidth === lastWidth) return
+      lastWidth = window.innerWidth
+      decide()
+    }
+
     decide()
-    window.addEventListener("resize", decide)
-    return () => window.removeEventListener("resize", decide)
-  }, [])
+    document.fonts?.ready.then(decide)
+    window.addEventListener("resize", onResize)
+    return () => window.removeEventListener("resize", onResize)
+  }, [locale])
 
   useEffect(() => {
     if (isStatic) return
@@ -83,16 +128,28 @@ export function ServicesSection() {
 
       /* arrived[i]: 0 = still below the screen, 1 = resting on the pile */
       const arrived = cards.map((_, i) => (i === 0 ? 1 : clamp01(progress - (i - 1))))
+      const pileGap = window.matchMedia(WIDE_QUERY).matches ? PILE_GAP_PX.wide : PILE_GAP_PX.compact
+
+      /* The pile is centred in the space under the title. When that space is tight
+         (phones), the whole pile is pushed down just enough to keep a minimum gap
+         under the title: it never touches it. */
+      const cell = cards[0]?.parentElement
+      const title = pin.querySelector<HTMLElement>("#experiences-title")
+      let pileShift = 0
+      if (cell && title) {
+        const firstCardTop = cell.getBoundingClientRect().top - ((n - 1) / 2) * pileGap
+        pileShift = Math.max(0, title.getBoundingClientRect().bottom + STAGE_TITLE_GAP_PX - firstCardTop)
+      }
       const top = Math.round(progress)
 
       cards.forEach((card, i) => {
         let depth = 0 // how many cards rest on top of this one
         for (let j = i + 1; j < n; j++) depth += arrived[j]
         const enter = 1 - arrived[i]
-        const pileOffset = (i - (n - 1) / 2) * PILE_GAP_PX
+        const pileOffset = (i - (n - 1) / 2) * pileGap + pileShift
 
         card.style.transform =
-          `translateY(calc(${pileOffset}px + ${enter.toFixed(4)} * (50vh + 100%))) ` +
+          `translateY(calc(${pileOffset}px + ${enter.toFixed(4)} * 100vh)) ` +
           `scale(${(1 - depth * PILE_SCALE_STEP).toFixed(4)})`
         card.style.filter = depth > 0.001 ? `brightness(${(1 - depth * PILE_DIM_STEP).toFixed(4)})` : ""
         card.style.opacity = enter >= 1 ? "0" : "1"
@@ -145,7 +202,7 @@ export function ServicesSection() {
               <div
                 ref={ref}
                 id="experiences-heading"
-                className={`${isStatic ? "" : "pt-36"} ${isVisible ? "reveal-up" : "opacity-0"}`}
+                className={`${isStatic ? "" : "pt-[7.5rem] lg:pt-36"} ${isVisible ? "reveal-up" : "opacity-0"}`}
               >
                 <h2 id="experiences-title" className="text-gradient font-heading text-5xl font-bold text-center">
                   {t("exp.title")}
@@ -157,7 +214,7 @@ export function ServicesSection() {
                   same spot and have the same height: which keeps the pile tidy. */}
               <div
                 id="experiences-cards"
-                className={isStatic ? "mt-12" : "flex-1 flex items-center justify-center px-1 pb-10"}
+                className={isStatic ? "mt-12" : "flex-1 flex items-center justify-center px-1 pb-4 lg:pb-10"}
               >
                 <div
                   className={`w-full sm:w-[calc(72%-0.9rem)] lg:w-[calc(36%-1.35rem)] mx-auto ${isStatic ? "flex flex-col gap-5" : "grid"}`}
@@ -286,7 +343,7 @@ function ExperienceCard({
       role="button"
       tabIndex={0}
       style={isStatic || index === 0 ? undefined : { opacity: 0 }}
-      className="bg-card exp-stack-card [grid-area:1/1] w-full origin-top rounded-2xl border border-border p-8 hover:border-primary/30 transition-[border-color,box-shadow] duration-300 group cursor-pointer flex flex-col will-change-transform shadow-[0_-10px_30px_rgba(0,0,0,0.3),0_20px_50px_rgba(0,0,0,0.35)] hover:shadow-[0_-10px_30px_rgba(0,0,0,0.3),0_20px_50px_rgba(5,107,255,0.18)]"
+      className="bg-card exp-stack-card [grid-area:1/1] w-full origin-top rounded-2xl border border-border p-6 sm:p-8 hover:border-primary/30 transition-[border-color,box-shadow] duration-300 group cursor-pointer flex flex-col will-change-transform shadow-[0_-10px_30px_rgba(0,0,0,0.3),0_20px_50px_rgba(0,0,0,0.35)] hover:shadow-[0_-10px_30px_rgba(0,0,0,0.3),0_20px_50px_rgba(5,107,255,0.18)]"
     >
       <div className="flex items-start justify-between mb-6">
         <div className="h-12 w-12 rounded-xl bg-secondary flex items-center justify-center text-primary group-hover:bg-gradient-to-r group-hover:from-[#033580] group-hover:to-[#056BFF] group-hover:text-primary-foreground transition-colors shadow-[0_2px_8px_rgba(0,0,0,0.15)]">

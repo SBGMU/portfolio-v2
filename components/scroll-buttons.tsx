@@ -26,12 +26,44 @@ function usePresentationVisible() {
 }
 
 /**
+ * True while the visitor is still above #about-strengths, i.e. until that block
+ * starts entering the screen from the bottom.
+ */
+function useAboveAboutStrengths() {
+  const [above, setAbove] = useState(true)
+
+  useEffect(() => {
+    const el = document.getElementById("about-strengths")
+    if (!el) return
+    let raf = 0
+    const check = () => {
+      raf = 0
+      setAbove(el.getBoundingClientRect().top > window.innerHeight)
+    }
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(check)
+    }
+    check()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    window.addEventListener("resize", onScroll)
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener("scroll", onScroll)
+      window.removeEventListener("resize", onScroll)
+    }
+  }, [])
+
+  return above
+}
+
+/**
  * Floating chevron under the presentation: jumps to section#experiences.
  * Shown immediately, visible 3s / hidden 2s in a loop, and brought back
  * straight away whenever the visitor scrolls.
  */
 export function ScrollToExperiencesButton() {
-  const presentationVisible = usePresentationVisible()
+  /* Shown from the top of the page down to #about-strengths, never from there on */
+  const aboveAboutStrengths = useAboveAboutStrengths()
   const [pulseOn, setPulseOn] = useState(true)
   const { t } = useLanguage()
 
@@ -56,12 +88,14 @@ export function ScrollToExperiencesButton() {
     }
   }, [])
 
-  const shown = presentationVisible && pulseOn
+  const shown = aboveAboutStrengths && pulseOn
 
   return (
+    /* Below lg it sits higher (bottom-28), clear above the floating "Get in Touch"
+       button, which occupies the bottom of the screen on phones and tablets */
     <div
       id="scroll-to-experiences"
-      className={`fixed bottom-6 left-0 right-0 z-40 flex justify-center pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${shown ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+      className={`fixed bottom-28 lg:bottom-6 left-0 right-0 z-40 flex justify-center pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${shown ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
     >
       {/* Label and chevron float together as one unit */}

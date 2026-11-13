@@ -109,13 +109,19 @@ function ThemeSwitch({
   id,
   isDark,
   onToggle,
+  wide = false,
 }: {
   id: string
   isDark: boolean
   onToggle: () => void
+  /** Twice as wide (used in the mobile menu, easier to hit with a thumb) */
+  wide?: boolean
 }) {
   const { t } = useLanguage()
   const label = isDark ? t("nav.lightSide") : t("nav.darkSide")
+  /* Width of one half of the switch. Total width = 2 halves + 2px of border:
+     74px by default, 148px when wide. */
+  const half = wide ? 73 : 36
 
   return (
     <button
@@ -132,18 +138,20 @@ function ThemeSwitch({
           overflows the switch outline by 1px (same treatment as the nav pill) */}
       <span
         aria-hidden="true"
-        className={`liquid-glass-nav-active absolute -left-0.5 -top-0.5 h-[42px] w-10 rounded-full pointer-events-none transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${isDark ? "translate-x-9" : "translate-x-0"
-          }`}
+        className="liquid-glass-nav-active absolute -left-0.5 -top-0.5 h-[42px] rounded-full pointer-events-none transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
+        style={{ width: half + 4, transform: `translateX(${isDark ? half : 0}px)` }}
       />
       <span
-        className={`relative z-10 h-[38px] w-9 flex items-center justify-center transition-opacity duration-300 ${isDark ? "opacity-45" : "opacity-100"
+        className={`relative z-10 h-[38px] flex items-center justify-center transition-opacity duration-300 ${isDark ? "opacity-45" : "opacity-100"
           }`}
+        style={{ width: half }}
       >
         <Sun className="h-4 w-4" />
       </span>
       <span
-        className={`relative z-10 h-[38px] w-9 flex items-center justify-center transition-opacity duration-300 ${isDark ? "opacity-100" : "opacity-45"
+        className={`relative z-10 h-[38px] flex items-center justify-center transition-opacity duration-300 ${isDark ? "opacity-100" : "opacity-45"
           }`}
+        style={{ width: half }}
       >
         <Moon className="h-4 w-4" />
       </span>
@@ -340,7 +348,7 @@ export function Navbar() {
             {/* Hamburger button: liquid glass */}
             <button
               id="mobile-menu-open"
-              className="flex items-center justify-center h-10 w-10 rounded-xl liquid-glass-btn text-white transition-all duration-300 hover:scale-105"
+              className="flex items-center justify-center h-10 w-10 rounded-full liquid-glass-btn text-white transition-all duration-300 hover:scale-105"
               onClick={() => setMobileOpen(true)}
               aria-label="Open menu"
             >
@@ -384,7 +392,7 @@ export function Navbar() {
 
             {/* Close button: liquid glass */}
             <button
-              className="flex items-center justify-center h-10 w-10 rounded-xl liquid-glass-btn text-white transition-all duration-300 hover:scale-105"
+              className="flex items-center justify-center h-10 w-10 rounded-full liquid-glass-btn text-white transition-all duration-300 hover:scale-105"
               onClick={() => setMobileOpen(false)}
               aria-label="Close menu"
             >
@@ -409,7 +417,7 @@ export function Navbar() {
 
             {/* Theme switch (language is in the top bar) */}
             <div className="flex justify-center mt-3">
-              <ThemeSwitch id="theme-toggle-mobile" isDark={isDark} onToggle={() => setIsDark(!isDark)} />
+              <ThemeSwitch id="theme-toggle-mobile" wide isDark={isDark} onToggle={() => setIsDark(!isDark)} />
             </div>
           </div>
         </div>

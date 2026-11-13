@@ -7,8 +7,10 @@ export function PageLoader() {
   const [isFadingOut, setIsFadingOut] = useState(false)
 
   useEffect(() => {
-    const fadeTimer = setTimeout(() => setIsFadingOut(true), 2800)
-    const hideTimer = setTimeout(() => setIsVisible(false), 3600)
+    /* Timings are the original ones divided by 2.1 (2800 / 3600 ms); keep them in
+       step with the .page-loader animations in globals.css */
+    const fadeTimer = setTimeout(() => setIsFadingOut(true), 1333)
+    const hideTimer = setTimeout(() => setIsVisible(false), 1714)
     return () => {
       clearTimeout(fadeTimer)
       clearTimeout(hideTimer)

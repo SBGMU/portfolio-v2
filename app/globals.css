@@ -489,7 +489,7 @@ html {
 }
 
 .page-loader--out {
-  animation: loaderOut 0.8s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+  animation: loaderOut 0.38s cubic-bezier(0.4, 0, 0.6, 1) forwards;
 }
 
 /* Centered name: zoom pulse + fade-in blur */
@@ -501,8 +501,8 @@ html {
   letter-spacing: -0.02em;
   opacity: 0;
   animation:
-    loaderTitleOpacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards,
-    loaderZoomPulse     3s ease-in-out                     0.8s infinite;
+    loaderTitleOpacity 0.43s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards,
+    loaderZoomPulse     1.43s ease-in-out                   0.38s infinite;
 }
 
 /* ================================================================== */
