@@ -1,7 +1,7 @@
 "use client"
 
 /**
- * Language Context — provides French / English i18n across the whole app.
+ * Language Context: provides French / English i18n across the whole app.
  * The toggle uses a circular French flag button (liquid glass styled)
  * placed next to the Light Side / Dark Side toggle.
  */
@@ -15,6 +15,7 @@ export type Locale = "en" | "fr"
 
 interface LanguageContextValue {
   locale: Locale
+  setLocale: (locale: Locale) => void
   toggleLocale: () => void
   t: (key: string) => string
 }
@@ -157,6 +158,31 @@ const translations: Record<Locale, Record<string, string>> = {
 
     /* Sticky */
     "sticky.getInTouch": "Get in Touch",
+
+    /* Language switcher */
+    "lang.select": "Select language",
+
+    /* Contact form (accordion) */
+    "contact.form.toggle": "Write me a message",
+    "contact.form.name": "Name",
+    "contact.form.namePlaceholder": "Name or company",
+    "contact.form.email": "Your email",
+    "contact.form.emailPlaceholder": "you@company.com",
+    "contact.form.subject": "Subject",
+    "contact.form.subjectPlaceholder": "E.g. Your application for the Data Analyst position",
+    "contact.form.message": "Message",
+    "contact.form.messagePlaceholder":
+      "Hello Stephen, we have reviewed your application and would like to talk with you about...",
+    "contact.form.send": "Send message",
+    "contact.form.sending": "Sending...",
+    "contact.form.sent": "Message sent. Thank you, I will get back to you shortly.",
+    "contact.form.error": "The message could not be sent.",
+    "contact.form.errorFallback": "Write to me by email instead",
+    "contact.form.hint": "I reply by email as soon as possible.",
+
+    /* Floating scroll buttons */
+    "scroll.top": "Back to top",
+    "scroll.experiences": "Scroll to experiences",
   },
 
   fr: {
@@ -293,6 +319,31 @@ const translations: Record<Locale, Record<string, string>> = {
 
     /* Sticky */
     "sticky.getInTouch": "Prendre Contact",
+
+    /* Language switcher */
+    "lang.select": "Choisir la langue",
+
+    /* Contact form (accordion) */
+    "contact.form.toggle": "M'écrire un message",
+    "contact.form.name": "Nom",
+    "contact.form.namePlaceholder": "Nom ou entreprise",
+    "contact.form.email": "Votre email",
+    "contact.form.emailPlaceholder": "vous@entreprise.com",
+    "contact.form.subject": "Objet",
+    "contact.form.subjectPlaceholder": "Ex. : Votre candidature au poste de Data Analyst",
+    "contact.form.message": "Message",
+    "contact.form.messagePlaceholder":
+      "Bonjour Stephen, nous avons étudié votre candidature et souhaitons échanger avec vous au sujet de...",
+    "contact.form.send": "Envoyer le message",
+    "contact.form.sending": "Envoi en cours...",
+    "contact.form.sent": "Message envoyé. Merci, je vous réponds rapidement.",
+    "contact.form.error": "Le message n'a pas pu être envoyé.",
+    "contact.form.errorFallback": "Écrivez-moi plutôt par email",
+    "contact.form.hint": "Je vous réponds par email dans les meilleurs délais.",
+
+    /* Floating scroll buttons */
+    "scroll.top": "Retour en haut",
+    "scroll.experiences": "Défiler vers les expériences",
   },
 }
 
@@ -308,14 +359,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLocale((prev) => (prev === "en" ? "fr" : "en"))
   }, [])
 
-  /** Look up a translation key — falls back to the key itself. */
+  /** Look up a translation key: falls back to the key itself. */
   const t = useCallback(
     (key: string) => translations[locale]?.[key] ?? key,
     [locale],
   )
 
   return (
-    <LanguageContext.Provider value={{ locale, toggleLocale, t }}>
+    <LanguageContext.Provider value={{ locale, setLocale, toggleLocale, t }}>
       {children}
     </LanguageContext.Provider>
   )
@@ -328,7 +379,7 @@ export function useLanguage() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  RichText — renders **bold** markers from translation strings       */
+/*  RichText: renders **bold** markers from translation strings       */
 /* ------------------------------------------------------------------ */
 
 /**
@@ -336,7 +387,7 @@ export function useLanguage() {
  * React nodes with <strong> wrappers. Safe to use inside <p> or <span>.
  */
 export function parseRichText(text: string): React.ReactNode[] {
-  // Split on **...**  — odd indices are the bold segments
+  // Split on **...** : odd indices are the bold segments
   const parts = text.split(/\*\*(.*?)\*\*/g)
   return parts.map((part, i) =>
     i % 2 === 1 ? <strong key={i} className="text-foreground font-semibold">{part}</strong> : part,

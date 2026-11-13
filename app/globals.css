@@ -200,14 +200,14 @@ body::after {
 }
 
 /* ================================================================== */
-/*  Liquid Glass — shared classes for navbar, buttons, mobile menu     */
+/*  Liquid Glass: shared classes for navbar, buttons, mobile menu     */
 /* ================================================================== */
 
-/* Desktop nav pill — frosted glass container */
+/* Desktop nav pill: frosted glass container */
 .liquid-glass-nav {
   background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(24px) saturate(1.6);
   -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  backdrop-filter: blur(24px) saturate(1.6);
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow:
     0 4px 24px rgba(0, 0, 0, 0.25),
@@ -215,22 +215,36 @@ body::after {
     inset 0 -1px 0 rgba(0, 0, 0, 0.05);
 }
 
-/* Active nav item — deeper glass pill */
+/* Active nav item: deeper glass pill */
 .liquid-glass-nav-active {
-  background: rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(16px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(190, 215, 255, 0.04) 100%);
   -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow:
     0 2px 12px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
+/* Non-active nav item: soft glass highlight on hover (the active pill stays visible) */
+.liquid-glass-nav-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.light-mode .liquid-glass-nav-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Active link label sits above the sliding pill */
+.light-mode .liquid-glass-nav a[aria-current="true"] {
+  color: rgba(0, 0, 0, 0.95);
+}
+
 /* Generic liquid glass button (hamburger, close, theme, lang) */
 .liquid-glass-btn {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px) saturate(1.5);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(190, 215, 255, 0.02) 100%);
   -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  backdrop-filter: blur(20px) saturate(1.5);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow:
     0 2px 16px rgba(0, 0, 0, 0.2),
@@ -238,22 +252,22 @@ body::after {
 }
 
 .liquid-glass-btn:hover {
-  background: rgba(255, 255, 255, 0.16);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(190, 215, 255, 0.06) 100%);
   border-color: rgba(255, 255, 255, 0.22);
 }
 
-/* Mobile overlay — full-screen frosted glass backdrop */
+/* Mobile overlay: full-screen frosted glass backdrop */
 .liquid-glass-overlay {
   background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(32px) saturate(1.4);
   -webkit-backdrop-filter: blur(32px) saturate(1.4);
+  backdrop-filter: blur(32px) saturate(1.4);
 }
 
-/* Mobile slide-down menu panel — liquid glass */
+/* Mobile slide-down menu panel: liquid glass */
 .liquid-glass-menu {
   background: rgba(20, 20, 30, 0.8);
-  backdrop-filter: blur(40px) saturate(1.8);
   -webkit-backdrop-filter: blur(40px) saturate(1.8);
+  backdrop-filter: blur(40px) saturate(1.8);
   box-shadow:
     0 8px 40px rgba(0, 0, 0, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -278,7 +292,7 @@ body::after {
 }
 
 .light-mode .liquid-glass-nav-active {
-  background: rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, rgba(5, 40, 110, 0.02) 100%);
   border-color: rgba(0, 0, 0, 0.1);
   color: rgba(0, 0, 0, 0.95) !important;
   box-shadow:
@@ -287,7 +301,7 @@ body::after {
 }
 
 .light-mode .liquid-glass-btn {
-  background: rgba(0, 0, 0, 0.06);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.06) 0%, rgba(5, 40, 110, 0.02) 100%);
   border-color: rgba(0, 0, 0, 0.08);
   color: rgba(0, 0, 0, 0.8);
   box-shadow:
@@ -296,7 +310,7 @@ body::after {
 }
 
 .light-mode .liquid-glass-btn:hover {
-  background: rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, rgba(5, 40, 110, 0.02) 100%);
   border-color: rgba(0, 0, 0, 0.12);
 }
 
@@ -398,7 +412,7 @@ html {
   100% { background-position:  200% center; }
 }
 
-/* Blue portfolio palette — shimmer gradient for h2 headings (slowed) */
+/* Blue portfolio palette: shimmer gradient for h2 headings (slowed) */
 .text-gradient {
   background: linear-gradient(
     125deg,
@@ -464,8 +478,8 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(24px) saturate(1.4);
   -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(24px) saturate(1.4);
   background: rgba(0, 0, 0, 0.78);
 }
 
@@ -478,7 +492,7 @@ html {
   animation: loaderOut 0.8s cubic-bezier(0.4, 0, 0.6, 1) forwards;
 }
 
-/* Centered name — zoom pulse + fade-in blur */
+/* Centered name: zoom pulse + fade-in blur */
 .page-loader__title {
   position: relative;
   z-index: 1;
@@ -492,33 +506,33 @@ html {
 }
 
 /* ================================================================== */
-/*  LIQUID GLASS — bg-card override                                    */
+/*  LIQUID GLASS: bg-card override                                    */
 /* ================================================================== */
 
-/* Dark mode glass card — semi-transparent blue tint + blur */
+/* Dark mode glass card: semi-transparent blue tint + blur */
 .bg-card {
   background: linear-gradient(
     145deg,
     rgba(5, 107, 255, 0.06) 0%,
     rgba(0, 5, 30, 0.18) 100%
   ) !important;
-  backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
     0 4px 24px rgba(0, 0, 0, 0.40),
     0 1px 6px rgba(0, 0, 0, 0.22);
 }
 
-/* Light mode glass card — inspired by .glass-card, blue portfolio palette */
+/* Light mode glass card: inspired by .glass-card, blue portfolio palette */
 .light-mode .bg-card {
   background: linear-gradient(
     145deg,
     rgba(255, 255, 255, 0.76) 0%,
     rgba(218, 230, 255, 0.62) 100%
   ) !important;
-  backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
   border-color: rgba(5, 107, 255, 0.14) !important;
   box-shadow:
     inset 0 1.5px 0 rgba(255, 255, 255, 0.95),
@@ -528,7 +542,7 @@ html {
 }
 
 /* ================================================================== */
-/*  EXPERT AREA — bg-secondary skill cards                             */
+/*  EXPERT AREA: bg-secondary skill cards                             */
 /* ================================================================== */
 
 #presentation .bg-secondary {
@@ -541,11 +555,282 @@ html {
 }
 
 /* ================================================================== */
-/*  LIGHT MODE — white text → muted-foreground                        */
+/*  LIGHT MODE: white text → muted-foreground                        */
 /* ================================================================== */
 
 .light-mode p,
 .light-mode li,
 .light-mode label {
   color: hsl(var(--muted-foreground));
+}
+/* ================================================================== */
+/*  LANGUAGE DROPDOWN                                                   */
+/* ================================================================== */
+
+.lang-dropdown {
+  background: rgba(10, 14, 28, 0.94);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  backdrop-filter: blur(24px) saturate(1.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.lang-option {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.lang-option:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.lang-option-selected,
+.lang-option-selected:hover {
+  background: rgba(5, 107, 255, 0.16);
+  color: #fff;
+}
+
+.lang-badge {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.lang-option-selected .lang-badge {
+  background: rgba(5, 107, 255, 0.28);
+  border-color: rgba(5, 107, 255, 0.45);
+  color: #fff;
+}
+
+.lang-check {
+  color: #60a5fa;
+}
+
+.light-mode .lang-dropdown {
+  background: rgba(248, 250, 255, 0.97);
+  border-color: rgba(5, 107, 255, 0.14);
+  box-shadow:
+    0 16px 48px rgba(92, 120, 200, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.light-mode .lang-option {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.light-mode .lang-option:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.light-mode .lang-option-selected,
+.light-mode .lang-option-selected:hover {
+  background: rgba(5, 107, 255, 0.1);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.light-mode .lang-badge {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.light-mode .lang-option-selected .lang-badge {
+  background: rgba(5, 107, 255, 0.14);
+  border-color: rgba(5, 107, 255, 0.3);
+  color: #056bff;
+}
+
+.light-mode .lang-check {
+  color: #056bff;
+}
+
+/* ================================================================== */
+/*  SLIDE-IN REVEALS: from the far left / right edge of the screen    */
+/* ================================================================== */
+
+@keyframes slide-from-left {
+  from { opacity: 0; transform: translateX(-100vw); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-from-right {
+  from { opacity: 0; transform: translateX(100vw); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.reveal-from-left {
+  opacity: 0;
+  animation: slide-from-left 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.reveal-from-right {
+  opacity: 0;
+  animation: slide-from-right 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-from-left,
+  .reveal-from-right {
+    animation-duration: 0.01s;
+  }
+}
+
+/* ================================================================== */
+/*  EXPERTISE MARQUEE: single-line skills track                       */
+/* ================================================================== */
+
+.skills-marquee {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scroll-behavior: auto;
+  /* No mask-image here: a mask on the track would isolate it and the
+     backdrop-filter of the glass skill tiles would have nothing to blur. */
+}
+
+/* Glass skill tiles: frosted, lit from the top edge */
+.skill-glass {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.11) 0%,
+    rgba(120, 170, 255, 0.05) 55%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12),
+    0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+.skill-glass:hover {
+  border-color: rgba(96, 165, 250, 0.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12),
+    0 8px 22px rgba(5, 107, 255, 0.22);
+}
+
+.light-mode .skill-glass {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.78) 0%,
+    rgba(218, 230, 255, 0.5) 100%
+  );
+  border-color: rgba(5, 107, 255, 0.16);
+  box-shadow:
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(5, 107, 255, 0.05),
+    0 6px 18px rgba(92, 120, 200, 0.16);
+}
+
+.light-mode .skill-glass:hover {
+  border-color: rgba(5, 107, 255, 0.4);
+  box-shadow:
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.95),
+    0 8px 22px rgba(5, 107, 255, 0.2);
+}
+
+/* On the light glass the label must be dark (overrides the white label rule above) */
+.light-mode #presentation .skill-glass span.text-muted-foreground {
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+.skills-marquee::-webkit-scrollbar {
+  display: none;
+}
+
+/* ================================================================== */
+/*  EXPERIENCES: stacked cards need an opaque glass so the card        */
+/*  underneath does not show through                                    */
+/* ================================================================== */
+
+.bg-card.exp-stack-card {
+  background:
+    linear-gradient(145deg, rgba(5, 107, 255, 0.12) 0%, rgba(0, 5, 30, 0.3) 100%),
+    #070b1a !important;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.light-mode .bg-card.exp-stack-card {
+  background: linear-gradient(145deg, #ffffff 0%, #e3ecff 100%) !important;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* ================================================================== */
+/*  REVERSE REVEALS: played when an element drops back below the      */
+/*  viewport (data-reveal="out" is set by useScrollReveal)             */
+/*  The last keyframe resets the transform so the hidden element keeps */
+/*  its real position and can be detected again on the way down.       */
+/* ================================================================== */
+
+@keyframes reveal-up-out {
+  0%   { opacity: 1; transform: translateY(0); }
+  99%  { opacity: 0; transform: translateY(60px); }
+  100% { opacity: 0; transform: none; }
+}
+
+@keyframes reveal-scale-out {
+  0%   { opacity: 1; transform: scale(1); }
+  99%  { opacity: 0; transform: scale(0.88); }
+  100% { opacity: 0; transform: none; }
+}
+
+@keyframes reveal-left-out {
+  0%   { opacity: 1; transform: translateX(0); }
+  99%  { opacity: 0; transform: translateX(-40px); }
+  100% { opacity: 0; transform: none; }
+}
+
+@keyframes slide-from-left-out {
+  0%   { opacity: 1; transform: translateX(0); }
+  99%  { opacity: 0; transform: translateX(-100vw); }
+  100% { opacity: 0; transform: none; }
+}
+
+@keyframes slide-from-right-out {
+  0%   { opacity: 1; transform: translateX(0); }
+  99%  { opacity: 0; transform: translateX(100vw); }
+  100% { opacity: 0; transform: none; }
+}
+
+[data-reveal="out"].reveal-up,
+[data-reveal="out"] .reveal-up { animation-name: reveal-up-out; }
+
+[data-reveal="out"].reveal-scale,
+[data-reveal="out"] .reveal-scale { animation-name: reveal-scale-out; }
+
+[data-reveal="out"].reveal-left,
+[data-reveal="out"] .reveal-left { animation-name: reveal-left-out; }
+
+[data-reveal="out"].reveal-from-left,
+[data-reveal="out"] .reveal-from-left { animation-name: slide-from-left-out; }
+
+[data-reveal="out"].reveal-from-right,
+[data-reveal="out"] .reveal-from-right { animation-name: slide-from-right-out; }
+
+/* ================================================================== */
+/*  SCROLL HINT: label + chevron floating together                    */
+/* ================================================================== */
+
+@keyframes scroll-hint-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+.scroll-hint-float {
+  animation: scroll-hint-float 2.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-hint-float {
+    animation: none;
+  }
 }

@@ -10,6 +10,7 @@ import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { StickyGetInTouch } from "@/components/sticky-get-in-touch"
 import { DownloadResume } from "@/components/download-resume"
+import { ScrollToExperiencesButton, ScrollTopButton } from "@/components/scroll-buttons"
 /* i18n provider wraps the entire page so every component can access translations */
 import { LanguageProvider } from "@/context/language-context"
 import { PageLoader } from "@/components/page-loader"
@@ -29,6 +30,8 @@ export default function Page() {
         <DownloadResume />
         <Footer />
         <StickyGetInTouch />
+        <ScrollToExperiencesButton />
+        <ScrollTopButton />
       </main>
     </LanguageProvider>
   )
